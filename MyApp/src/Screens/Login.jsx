@@ -6,6 +6,7 @@ export default function Login() {
     const [password, onChangePassword] =  React.useState('password');
 
   return (
+    //TODO:forgot password and forgo username
     <SafeAreaView>
         <Logo/>
         <View>
