@@ -10,7 +10,7 @@ export default function Login() {
     <SafeAreaView>
         <Logo/>
         <View>
-        <Text>Enter Username:</Text>
+        <Text>Username:</Text>
         <TextInput 
            style={styles.input}
            onChangeText={onChangeUserName}
@@ -20,7 +20,7 @@ export default function Login() {
            />
         </View>
         <View>
-        <Text>Enter Password:</Text>
+        <Text>Password:</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangePassword}
@@ -45,5 +45,9 @@ const styles = StyleSheet.create({
       margin: 12,
       borderWidth: 1,
       padding: 10,
+      backgroundColor:'blue'
     },
+    backg:{
+      backgroundColor:'#fcba03'
+    }
   });
