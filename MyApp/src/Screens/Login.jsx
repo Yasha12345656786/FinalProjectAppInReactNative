@@ -1,4 +1,4 @@
-import { View, Text,Image, TextInput, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, Text,Image, TextInput, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 
 export default function Login() {
@@ -8,7 +8,7 @@ export default function Login() {
   return (
     //TODO:forgot password and forgo username
     <SafeAreaView>
-        <Logo/>
+    <ScrollView>
         <View>
         <Text>Username:</Text>
         <TextInput 
@@ -33,6 +33,7 @@ export default function Login() {
         <TouchableOpacity>
             <Text>Log In</Text>
         </TouchableOpacity>
+        </ScrollView>
     </SafeAreaView>
 
  

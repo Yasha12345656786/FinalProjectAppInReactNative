@@ -1,5 +1,7 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView,StyleSheet,TextInput, TouchableOpacity,ScrollView  } from 'react-native'
 import React from 'react'
+
+
 
 export default function SignUp() {
     const[Pname,onChangePname]=React.useState('Private Name');
@@ -8,14 +10,32 @@ export default function SignUp() {
     const[Email,onChangeEmail]=React.useState('email');
     const[password,onChangePassword]=React.useState('password');
     const[VerPass,onChangeVerPass]=React.useState('verify password');
+    const CheckInput=()=>{
+      if (VerPass != password){
+        console.log("passwords don't match")
+      }
+      createNewUser();  
+    }
+    const createNewUser=()=>{
+      let user = {
+        Pname,
+        Lname,
+        username,
+        Email,
+        password
+
+      }
+    }
+
   return (
    <SafeAreaView>
-      <Logo/>
+    <ScrollView>
+    
     <View>
         <Text>Private Name:</Text>
         <TextInput
           style={styles.input}
-          onChangePname={onChangePname}
+          onChangeText={(txt)=>onChangePname(txt)}
           value={Pname}
           placeholder="Private Name"
           keyboardType = 'text'
@@ -25,7 +45,7 @@ export default function SignUp() {
     <Text>Last Name:</Text>
         <TextInput
           style={styles.input}
-          onChangeLname={onChangeLname}
+          onChangeText={(txt)=>onChangeLname(txt)}
           value={Lname}
           placeholder="Last Name"
           keyboardType = 'text'
@@ -35,7 +55,7 @@ export default function SignUp() {
     <Text>Username:</Text>
         <TextInput
           style={styles.input}
-          onChangeusername={onChangeUserName}
+          onChangeText={(txt)=>onChangeUserName(txt)}
           value={username}
           placeholder="username"
           keyboardType = 'text'
@@ -45,7 +65,7 @@ export default function SignUp() {
     <Text>Email:</Text>
         <TextInput
           style={styles.input}
-          onChangeEmail={onChangeEmail}
+          onChangeText={(txt)=>onChangeEmail(txt)}
           value={Email}
           placeholder="email"
           keyboardType = 'email'
@@ -55,7 +75,7 @@ export default function SignUp() {
     <Text>Password:</Text>
         <TextInput
           style={styles.input}
-          onChangePassword={onChangePassword}
+          onChangeText={(txt)=>onChangePassword(txt)}
           value={password}
           placeholder="password"
           keyboardType = 'text'
@@ -65,13 +85,18 @@ export default function SignUp() {
     <Text>Verify Password:</Text>
         <TextInput
           style={styles.input}
-          onChangePname={onChangeVerPass}
+          onChangeText={(txt)=>onChangeVerPass(txt)}
           value={VerPass}
           placeholder="verify password"
           keyboardType = 'text'
         />
     </View>
-
+    <View>
+      <TouchableOpacity onPress={CheckInput}>
+        <Text>SignUp</Text>
+      </TouchableOpacity>
+    </View>
+    </ScrollView>
    </SafeAreaView>
   )
 }

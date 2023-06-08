@@ -4,9 +4,6 @@ import React from 'react'
 export default function TriviaGameMenu() {
   return (
     <SafeAreaView>
-    <View>
-        <Logo/>
-    </View>
 <View>
   <Text>Trivia Game</Text>
 </View>

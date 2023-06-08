@@ -1,9 +1,11 @@
-import { View, Text, SafeAreaView,TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView,TouchableOpacity,StyleSheet,ScrollView} from 'react-native'
 import React from 'react'
+
 
 export default function Menu() {
   return (
     <SafeAreaView>
+      <ScrollView>
       <View>
         <TouchableOpacity style={styles.button}>
             <Text>Memory Game</Text>                                    
@@ -29,6 +31,7 @@ export default function Menu() {
             <Text>LogOut</Text>
         </TouchableOpacity>
         </View>
+        </ScrollView>
     </SafeAreaView>
   )
 }

@@ -4,9 +4,6 @@ import React from 'react'
 export default function MemoryGameMenu() {
   return (
     <SafeAreaView>
-        <View>
-            <Logo/>
-        </View>
     <View>
       <Text>Memory Game</Text>
     </View>

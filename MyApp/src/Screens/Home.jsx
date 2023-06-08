@@ -1,18 +1,20 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity,StyleSheet } from 'react-native'
 import React from 'react'
-import Logo from '../Component/Logo'
+import SignUp from './SignUp';
+import Login from './Login';
 
-export default function Home() {
+
+export default function Home({navigation}) {
   return (
-    <View>
-        <Logo/>
+    <View style={styles.container}>
+       
         <View>
-       <TouchableOpacity>
+       <TouchableOpacity onPress={()=>navigation.navigate(Login)}>
          <Text>LogIn</Text>
        </TouchableOpacity>
        </View>
        <View>
-       <TouchableOpacity >
+       <TouchableOpacity onPress={()=>navigation.navigate(SignUp)}>
          <Text>SignUp</Text>
        </TouchableOpacity>
        </View>
