@@ -4,6 +4,11 @@ import React from 'react'
 export default function Login() {
     const [username, onChangeUserName] =  React.useState('username');
     const [password, onChangePassword] =  React.useState('password');
+    const CheckInput=()=>{
+      if (VerPass != password){
+        checkIfExists();
+      }
+      
 
   return (
     //TODO:forgot password and forgo username
@@ -30,7 +35,7 @@ export default function Login() {
           />
         </View>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={CheckInput}>
             <Text>Log In</Text>
         </TouchableOpacity>
         </ScrollView>
