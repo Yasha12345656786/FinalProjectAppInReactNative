@@ -8,10 +8,9 @@ export default function Login() {
       if (VerPass != password){
         checkIfExists();
       }
-      
+      //TODO chek usename and password w/ data base
 
   return (
-    //TODO:forgot password and forgo username
     <SafeAreaView>
     <ScrollView>
         <View>
@@ -44,6 +43,7 @@ export default function Login() {
  
   )
   
+}
 }
 const styles = StyleSheet.create({
     input: {

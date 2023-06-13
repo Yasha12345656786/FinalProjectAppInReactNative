@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView,StyleSheet } from 'react-native'
 import React from 'react'
 
-
+//TODO: Add email.js
 export default function ForgotPassword() {
   return (
     <SafeAreaView>

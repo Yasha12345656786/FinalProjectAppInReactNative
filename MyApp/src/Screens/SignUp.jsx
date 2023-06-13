@@ -11,9 +11,26 @@ export default function SignUp() {
     const[password,onChangePassword]=React.useState('password');
     const[VerPass,onChangeVerPass]=React.useState('verify password');
     const CheckInput=()=>{
-      if (VerPass != password){
-        console.log("passwords don't match")
+      if(/[A-Za-z]/.test(Pname)){
+        console.log("Private Name Isn't Valid");
       }
+      if(/[A-Za-z]/.test(Lname)){
+        console.log("Last Name Isn't Valid");
+      }
+      if(/^[A-Za-z][A-Za-z0-9_-|w/.]{7,29}$/.test(username)){
+        console.log("Username Isn't Valid");
+      }
+      if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(Email)){
+        console.log("Email Isn't Valid");
+      }
+      if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/.test(password)){
+        console.log("Password Isn't Valid");
+
+      }
+      if (VerPass != password){
+        console.log("Passwords don't match")
+      }
+      
       createNewUser();  
     }
     const createNewUser=()=>{
