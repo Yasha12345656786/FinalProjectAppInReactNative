@@ -44,84 +44,122 @@ export default function SignUp() {
       }
     }
 
-  return (
-   <SafeAreaView>
-    <ScrollView>
-    
-    <View>
-        <Text>Private Name:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(txt)=>onChangePname(txt)}
-          value={Pname}
-          placeholder="Private Name"
-          keyboardType = 'text'
-        />
-    </View>
-    <View>
-    <Text>Last Name:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(txt)=>onChangeLname(txt)}
-          value={Lname}
-          placeholder="Last Name"
-          keyboardType = 'text'
-        />
-    </View>
-    <View>
-    <Text>Username:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(txt)=>onChangeUserName(txt)}
-          value={username}
-          placeholder="username"
-          keyboardType = 'text'
-        />
-    </View>
-    <View>
-    <Text>Email:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(txt)=>onChangeEmail(txt)}
-          value={Email}
-          placeholder="email"
-          keyboardType = 'email'
-        />
-    </View>
-    <View>
-    <Text>Password:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(txt)=>onChangePassword(txt)}
-          value={password}
-          placeholder="password"
-          keyboardType = 'text'
-        />
-    </View>
-    <View>
-    <Text>Verify Password:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(txt)=>onChangeVerPass(txt)}
-          value={VerPass}
-          placeholder="verify password"
-          keyboardType = 'text'
-        />
-    </View>
-    <View>
-      <TouchableOpacity onPress={CheckInput}>
-        <Text>SignUp</Text>
-      </TouchableOpacity>
-    </View>
-    </ScrollView>
-   </SafeAreaView>
-  )
-}
-const styles = StyleSheet.create({
+    return (
+      <SafeAreaView style={styles.container}>
+        <ScrollView contentContainerStyle={styles.scrollViewContent}>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Private Name:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt) => onChangePname(txt)}
+              value={Pname}
+              placeholder="Private Name"
+              keyboardType="text"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Last Name:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt) => onChangeLname(txt)}
+              value={Lname}
+              placeholder="Last Name"
+              keyboardType="text"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Username:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt) => onChangeUserName(txt)}
+              value={username}
+              placeholder="Username"
+              keyboardType="text"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Email:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt) => onChangeEmail(txt)}
+              value={Email}
+              placeholder="Email"
+              keyboardType="email-address"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Password:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt) => onChangePassword(txt)}
+              value={password}
+              placeholder="Password"
+              keyboardType="text"
+              secureTextEntry
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Verify Password:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(txt) => onChangeVerPass(txt)}
+              value={VerPass}
+              placeholder="Verify Password"
+              keyboardType="text"
+              secureTextEntry
+            />
+          </View>
+          <View style={styles.signUpButtonContainer}>
+            <TouchableOpacity style={styles.signUpButton} onPress={CheckInput}>
+              <Text style={styles.signUpButtonText}>Sign Up</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#f0f0f0', // Set the background color
+      paddingHorizontal: 20,
+      paddingTop: 10,
+    },
+    scrollViewContent: {
+      flexGrow: 1,
+    },
+    inputContainer: {
+      marginVertical: 10,
+    },
+    label: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+    },
     input: {
       height: 40,
-      margin: 12,
       borderWidth: 1,
       padding: 10,
+      backgroundColor: '#fff', // Set the input field background color
+      borderRadius: 5,
+    },
+    signUpButtonContainer: {
+      alignItems: 'center',
+      marginTop: 20,
+    },
+    signUpButton: {
+      width: 200,
+      height: 50,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#007bff', // Set the button color
+      borderRadius: 5,
+      elevation: 3,
+    },
+    signUpButtonText: {
+      color: '#fff',
+      fontSize: 18,
+      fontWeight: 'bold',
     },
   });

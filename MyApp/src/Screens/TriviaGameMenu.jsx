@@ -1,28 +1,60 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import React from 'react';
 
 export default function TriviaGameMenu() {
   return (
-    <SafeAreaView>
-<View>
-  <Text>Trivia Game</Text>
-</View>
-<View>
-    <TouchableOpacity>
-        <Text>New Game</Text>
-    </TouchableOpacity>
-</View>
-<View>
-    <TouchableOpacity>
-        <Text>LeadersBoard</Text>
-    </TouchableOpacity>
-</View>
-<View>
-    <TouchableOpacity>
-        <Text>Main Menu</Text>
-    </TouchableOpacity>
-</View>
-
-</SafeAreaView>
-  )
+    <SafeAreaView style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Trivia Game</Text>
+      </View>
+      <View style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuButton}>
+          <Text style={styles.buttonText}>New Game</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuButton}>
+          <Text style={styles.buttonText}>Leaderboard</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.menuItem}>
+        <TouchableOpacity style={styles.menuButton}>
+          <Text style={styles.buttonText}>Main Menu</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0', // Set the background color
+  },
+  titleContainer: {
+    marginBottom: 40,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  menuItem: {
+    marginVertical: 10,
+  },
+  menuButton: {
+    width: 200,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#007bff', // Set the button color
+    borderRadius: 5,
+    elevation: 3, // Add some shadow for a raised effect
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+});

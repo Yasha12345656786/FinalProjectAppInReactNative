@@ -1,57 +1,65 @@
-import { View, Text, SafeAreaView,StyleSheet } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-//TODO: Add email.js
-export default function ForgotPassword() {
+const ForgotPasswordPage = () => {
   return (
-    <SafeAreaView>
-    <View>
-      <Text>Forgot Your Password...</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Forgot Password</Text>
+      <Text style={styles.description}>Enter your email address to reset your password.</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#999"
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+      <TouchableOpacity style={styles.resetButton}>
+        <Text style={styles.resetButtonText}>Reset Password</Text>
+      </TouchableOpacity>
     </View>
-    <View>
-        <Text>Enter Your Email:</Text>
-    <TextInput
-          style={styles.input}
-          onChangeEmail={onChangeEmail}
-          value={Email}
-          placeholder="email"
-          keyboardType = 'email'
-        />
-    </View>
-    </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
-  },
-  logoContainer: {
-    marginBottom: 20,
-  },
-  textContainer: {
-    marginBottom: 20,
+    paddingHorizontal: 30,
+    backgroundColor: '#f0f0f0',
   },
   title: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  inputContainer: {
     marginBottom: 20,
   },
-  label: {
-    marginBottom: 8,
+  description: {
     fontSize: 16,
+    marginBottom: 30,
+    textAlign: 'center',
   },
   input: {
+    width: '100%',
+    height: 40,
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    borderColor: '#ccc',
     borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 4,
-    padding: 8,
-    width: 200,
+    borderRadius: 5,
+  },
+  resetButton: {
+    width: '100%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#007bff', // Customize the button color
+    borderRadius: 5,
+  },
+  resetButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
+
+export default ForgotPasswordPage;
