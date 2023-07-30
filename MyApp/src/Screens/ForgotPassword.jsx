@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const ForgotPasswordPage = () => {
+export default function ForgotPassword()  {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Forgot Password</Text>
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#007bff', // Customize the button color
+    backgroundColor: '#007bff',
     borderRadius: 5,
   },
   resetButtonText: {
@@ -62,4 +62,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPasswordPage;

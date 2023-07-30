@@ -2,6 +2,14 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import SignUp from './SignUp';
 import Login from './Login';
+import ForgotPassword from './ForgotPassword';
+import ForgotUsername from './ForgotUsername';
+import MemoryGameLeaderboard from './MemoryGameLeaderBoard';
+import MemoryGameMenu from './MemoryGameMenu';
+import Menu from './Menu';
+import TriviaGameLeaderboard from './TriviaGameLeaderBoard';
+import TriviaGameMenu from './TriviaGameMenu';
+import UserInfo from './UserInfo';
 
 export default function Home({ navigation }) {
   return (
@@ -22,6 +30,78 @@ export default function Home({ navigation }) {
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(ForgotPassword)}
+        >
+          <Text style={styles.buttonText}>Forgot Password</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(ForgotUsername)}
+        >
+          <Text style={styles.buttonText}>Forgot Username</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(MemoryGameLeaderboard)}
+        >
+          <Text style={styles.buttonText}>Memory Game Leaderboard</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(MemoryGameMenu)}
+        >
+          <Text style={styles.buttonText}>Memory Game Menu</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(Menu)}
+        >
+          <Text style={styles.buttonText}>Menu</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(SignUp)}
+        >
+          <Text style={styles.buttonText}>SignUp</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(TriviaGameLeaderboard)}
+        >
+          <Text style={styles.buttonText}>Trivia Game Leaderboard</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(TriviaGameMenu)}
+        >
+          <Text style={styles.buttonText}>Trivia Game Menu</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(UserInfo)}
+        >
+          <Text style={styles.buttonText}>User's Info</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -31,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Set the background color
+    backgroundColor: '#f0f0f0',
   },
   buttonContainer: {
     marginVertical: 10,
@@ -41,9 +121,9 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#007bff', // Set the button color
+    backgroundColor: '#007bff', 
     borderRadius: 5,
-    elevation: 3, // Add some shadow for a raised effect
+    elevation: 3, 
   },
   buttonText: {
     color: '#fff',

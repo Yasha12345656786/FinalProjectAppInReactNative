@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
-const ForgotUsernamePage = () => {
+export default function ForgotUsername() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Forgot Username</Text>
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotUsernamePage;
+

@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Set the background color
+    backgroundColor: '#f0f0f0', 
   },
   titleContainer: {
     marginBottom: 40,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#007bff', // Set the button color
+    backgroundColor: '#007bff', 
     borderRadius: 5,
     elevation: 3,
   },

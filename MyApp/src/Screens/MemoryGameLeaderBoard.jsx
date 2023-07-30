@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 
-const MemoryGameLeaderboard = ({ data }) => {
+export default function MemoryGameLeaderboard ({ data }) {
   // Sample data format for the leaderboard (you can replace this with your actual data)
   // data = [
   //   { username: 'User1', score: 100 },
@@ -73,4 +73,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MemoryGameLeaderboard;

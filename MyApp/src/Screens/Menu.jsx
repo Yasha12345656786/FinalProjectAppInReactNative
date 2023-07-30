@@ -28,7 +28,7 @@ export default function Menu() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f0f0', // Set the background color
+    backgroundColor: '#f0f0f0', 
   },
   scrollViewContent: {
     flexGrow: 1,
@@ -40,10 +40,10 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#007bff', // Set the button color
+    backgroundColor: '#007bff', 
     borderRadius: 5,
     marginVertical: 10,
-    elevation: 3, // Add some shadow for a raised effect
+    elevation: 3, 
   },
   buttonText: {
     color: '#fff',
@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#DDDDDD', // Set the button color
+    backgroundColor: '#DDDDDD', 
     borderRadius: 5,
     marginVertical: 20,
-    elevation: 3, // Add some shadow for a raised effect
+    elevation: 3, 
   },
   logoutButtonText: {
     color: '#000',

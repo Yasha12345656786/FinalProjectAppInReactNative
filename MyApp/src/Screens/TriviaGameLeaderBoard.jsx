@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 
-const TriviaGameLeaderboard = ({ data }) => {
+
+export default function TriviaGameLeaderboard({ data })  {
   // Sample data format for the leaderboard (you can replace this with your actual data)
   // data = [
   //   { username: 'User1', score: 100 },
@@ -72,5 +73,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-
-export default TriviaGameLeaderboard;
