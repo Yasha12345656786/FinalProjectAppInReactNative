@@ -19,7 +19,7 @@ export default function Login() {
                 style={styles.input}
                 onChangeText={onChangeUserName}
                 value={username}
-                placeholder="Username"
+                placeholder="Username" 
                 keyboardType="text"
               />
             </View>

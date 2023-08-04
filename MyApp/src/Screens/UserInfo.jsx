@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Set the background color
+    backgroundColor: '#f0f0f0',
   },
   greetingContainer: {
     marginBottom: 20,
