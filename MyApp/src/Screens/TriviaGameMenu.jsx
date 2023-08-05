@@ -1,5 +1,8 @@
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import React from 'react';
+import TriviaGame from './TriviaGame';
+import TriviaGameLeaderboard from './TriviaGameLeaderBoard';
+import Menu from './Menu';
 
 export default function TriviaGameMenu() {
   return (
@@ -8,17 +11,26 @@ export default function TriviaGameMenu() {
         <Text style={styles.title}>Trivia Game</Text>
       </View>
       <View style={styles.menuItem}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(TriviaGame)}
+        >
           <Text style={styles.buttonText}>New Game</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.menuItem}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(TriviaGameLeaderboard)}
+        >
           <Text style={styles.buttonText}>Leaderboard</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.menuItem}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(Menu)}
+        >
           <Text style={styles.buttonText}>Main Menu</Text>
         </TouchableOpacity>
       </View>

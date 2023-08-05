@@ -46,62 +46,6 @@ export default function Home({ navigation }) {
           <Text style={styles.buttonText}>Forgot Username</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(MemoryGameLeaderboard)}
-        >
-          <Text style={styles.buttonText}>Memory Game Leaderboard</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(MemoryGameMenu)}
-        >
-          <Text style={styles.buttonText}>Memory Game Menu</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(Menu)}
-        >
-          <Text style={styles.buttonText}>Menu</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(SignUp)}
-        >
-          <Text style={styles.buttonText}>SignUp</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(TriviaGameLeaderboard)}
-        >
-          <Text style={styles.buttonText}>Trivia Game Leaderboard</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(TriviaGameMenu)}
-        >
-          <Text style={styles.buttonText}>Trivia Game Menu</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate(UserInfo)}
-        >
-          <Text style={styles.buttonText}>User's Info</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 }

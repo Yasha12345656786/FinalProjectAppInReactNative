@@ -1,22 +1,42 @@
 import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
+import MemoryGameMenu from './MemoryGameMenu';
+import TriviaGameMenu from './TriviaGameMenu';
+import BeeInfoPage from './BeeInfoPage';
+import UserInfo from './UserInfo';
 
 export default function Menu() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=> navigation.navigate(MemoryGameMenu)} 
+        >
           <Text style={styles.buttonText}>Memory Game</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}>
+
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(TriviaGameMenu)}
+        >
           <Text style={styles.buttonText}>Trivia Game</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}>
+
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(BeeInfoPage)}
+        >
           <Text style={styles.buttonText}>Bee's Info Page</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuButton}>
+
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(UserInfo)}
+        >
           <Text style={styles.buttonText}>My Info</Text>
         </TouchableOpacity>
+        
         <TouchableOpacity style={styles.logoutButton}>
           <Text style={styles.logoutButtonText}>Log Out</Text>
         </TouchableOpacity>

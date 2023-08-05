@@ -1,5 +1,8 @@
 import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
+import MemoryGame from './MemoryGame';
+import MemoryGameLeaderboard from './MemoryGameLeaderBoard';
+import Menu from './Menu';
 
 export default function MemoryGameMenu() {
   return (
@@ -8,17 +11,28 @@ export default function MemoryGameMenu() {
         <Text style={styles.title}>Memory Game</Text>
       </View>
       <View style={styles.menuItem}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(MemoryGame)}
+        >
           <Text style={styles.buttonText}>New Game</Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.menuItem}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(MemoryGameLeaderboard)}
+        >
           <Text style={styles.buttonText}>Leaderboard</Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.menuItem}>
-        <TouchableOpacity style={styles.menuButton}>
+        <TouchableOpacity 
+        style={styles.menuButton}
+        onPress={()=>navigation.navigate(Menu)}
+        >
           <Text style={styles.buttonText}>Main Menu</Text>
         </TouchableOpacity>
       </View>

@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#007bff', // Customize the button color
+    backgroundColor: '#007bff', 
     borderRadius: 5,
   },
   recoverButtonText: {
