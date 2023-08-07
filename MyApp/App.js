@@ -8,7 +8,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons'
 import Login from './src/Screens/Login';
 import SignUp from './src/Screens/SignUp';
 import Menu from './src/Screens/Menu';
-
+import {base_api} from './utils/api';
 import { View } from 'react-native';
 
 

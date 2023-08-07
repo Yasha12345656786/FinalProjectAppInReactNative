@@ -83,7 +83,8 @@ export default function Push() {
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
-    };
+    }
+  );
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
     <Text>Your expo push token: {expoPushToken}</Text>
