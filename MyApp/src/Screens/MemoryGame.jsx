@@ -6,13 +6,13 @@ const MemoryGame = () => {
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedPairs, setMatchedPairs] = useState(0);
 
-  // Sample images for the cards
-  const images = [
-    require('./images/bee.jpg'),
-    require('./images/flower.jpg'),
-    require('./images/honey.jpg'),
-    // Add more images here...
-  ];
+  // // Sample images for the cards
+  // const images = [
+  //   require('./images/bee.jpg'),
+  //   require('./images/flower.jpg'),
+  //   require('./images/honey.jpg'),
+  //   // Add more images here...
+  // ];
 
   useEffect(() => {
     // Generate the cards when the component mounts
