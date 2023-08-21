@@ -1,5 +1,6 @@
 import { View, Text,Image, TextInput, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
+import SignUp from './SignUp';
 
 export default function Login() {
     const [username, onChangeUserName] =  React.useState('username');
@@ -38,6 +39,11 @@ export default function Login() {
             <TouchableOpacity style={styles.loginButton} onPress={CheckInput}>
               <Text style={styles.loginButtonText}>Log In</Text>
             </TouchableOpacity>
+            <View> 
+            <TouchableOpacity onPress={()=>navigation.navigate(SignUp)}>
+              <Text>No account?</Text>
+            </TouchableOpacity>
+          </View>
           </ScrollView>
         </SafeAreaView>
       );
