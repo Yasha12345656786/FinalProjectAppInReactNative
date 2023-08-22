@@ -2,11 +2,11 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {base_api} from '../../utils/api'
 
-export default function Question(id, question) {
+export default function Question(question) {
     const [questions, SetQuestion] = useState([]);
 
     async function LoadQuestion(){
-        let res = await fetch(`${base_api}/api/memoryGame/question/:lvl`); 
+        let res = await fetch(`${base_api}/api/triviaGame/question/:lvl`); 
         let data = await res.json();
         SetQuestion(data);
     }
@@ -17,12 +17,11 @@ export default function Question(id, question) {
 
     useEffect(()=>{
         LoadQuestion();
-    },[]);
-    function 
+    },[]); 
   return (
     <View>
       <Text>
-       
+       {question()}
       </Text>
     </View>
   )

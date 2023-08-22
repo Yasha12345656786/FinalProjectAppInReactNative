@@ -3,7 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-export default function TriviaGame() {
+export default function TriviaGame(lvl, q, Answers, points, userScore) {
   return (
     <SafeAreaView>
       <Text>TriviaGame</Text>
@@ -11,10 +11,13 @@ export default function TriviaGame() {
 
 
       <View>
-        <Text>Level</Text>
-        <Text>Time</Text>
-        <Text>Score</Text>
-        <Text>Question</Text>
+        <Text>{lvl}</Text>
+        <Text>{userScore}</Text>
+      </View>\
+
+
+      <View>
+        <Text>{q}</Text>
       </View>
 
       <View>
