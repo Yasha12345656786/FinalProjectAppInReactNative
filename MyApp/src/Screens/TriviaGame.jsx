@@ -1,49 +1,51 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { View, Text } from 'react-native';
+import React, { useContext, useState, useEffect } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TriviaContext } from '../Context/TriviaContext';
+import { PlayerContext } from '../Context/PlayerContext';
 
-export default function TriviaGame(lvl, q, Answers, points, userScore) {
+export default function TriviaGame() {
+
+  const { currentQuestion, UpdateScore } = useContext(TriviaContext);
+  const { player } = useContext(PlayerContext);
+
+
+  const AnswerPressed = (answer) => {
+    if(!answer.correct){
+      UpdateScore(player._id, 0);
+    }
+    else{
+      UpdateScore(player._id, answer.points)
+    }
+  }
+
+
   return (
     <SafeAreaView>
       <Text>TriviaGame</Text>
-      
+
+      <View>
+        <Text>{currentQuestion.lvl}</Text>
+        <Text>{player.triviaScore}</Text>
+      </View>
 
 
       <View>
-        <Text>{lvl}</Text>
-        <Text>{userScore}</Text>
-      </View>\
-
-
-      <View>
-        <Text>{q}</Text>
+        <Text>{currentQuestion.q}</Text>
       </View>
 
       <View>
-        <TouchableOpacity>
-            <Text>
-                Answer 1
-            </Text>
-        </TouchableOpacity>
+        {
+          currentQuestion.Answers.map((answer, index) => {
+            <TouchableOpacity key={index} onPress={() => AnswerPressed(answer)}>
+              <Text>
+                {answer.value}
+              </Text>
+            </TouchableOpacity>
+          })
+        }
 
-        <TouchableOpacity>
-            <Text>
-                Answer 2
-            </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-            <Text>
-                Answer 3
-            </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity>
-            <Text>
-                Answer 4
-            </Text>
-        </TouchableOpacity>
 
       </View>
 
