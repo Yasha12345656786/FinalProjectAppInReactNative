@@ -7,6 +7,7 @@ export default function TriviaContextProvider({ children }) {
 
     const [currentQuestion, setCurrentQuestion] = useState({});
     const [currentLevel, setCurrentLevel] = useState(0);
+    const [currentAnswers, setCurrentAnswers]= useState([])
 
     const GetNextQuestion = async () => {
         try {
@@ -18,6 +19,19 @@ export default function TriviaContextProvider({ children }) {
         } catch (error) {
 
         }
+    }
+    const GetNextAnswers = async () =>{
+        try {
+            let response = await fetch(`${base_api}/api/triviaGame/GetNextLevelBylvl/${currentLevel}`);
+            if (response.ok) {
+                let data = await response.json();
+                setCurrentAnswers(data);
+                
+            }
+        } catch (error) {
+            
+        }
+
     }
 
     const UpdateScore = async (id, score) => {
@@ -43,10 +57,12 @@ export default function TriviaContextProvider({ children }) {
 
     useEffect(() => {
         GetNextQuestion();
+        GetNextAnswers();
     }, [currentLevel])
 
     const value = {
         currentQuestion,
+        currentAnswers,
         UpdateScore
     }
 

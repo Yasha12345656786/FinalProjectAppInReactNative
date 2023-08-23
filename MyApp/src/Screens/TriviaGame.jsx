@@ -7,7 +7,7 @@ import { PlayerContext } from '../Context/PlayerContext';
 
 export default function TriviaGame() {
 
-  const { currentQuestion, UpdateScore } = useContext(TriviaContext);
+  const { currentQuestion,currentAnswers, UpdateScore } = useContext(TriviaContext);
   const { player } = useContext(PlayerContext);
 
 

@@ -1,27 +1,31 @@
 import { View, Text, SafeAreaView,StyleSheet,TextInput, TouchableOpacity,ScrollView  } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import Login from './Login';
+import { PlayerContext } from '../Context/PlayerContext';
 
 
 
 export default function SignUp() {
-    const[Pname,onChangePname]=React.useState('Private Name');
-    const[Lname,onChangeLname]=React.useState('Last Name');
+    const[first_name,onChangePname]=React.useState('Private Name');
+    const[last_name,onChangeLname]=React.useState('Last Name');
     const[username,onChangeUserName]=React.useState('username');
-    const[Email,onChangeEmail]=React.useState('email');
+    const[email,onChangeEmail]=React.useState('email');
     const[password,onChangePassword]=React.useState('password');
     const[VerPass,onChangeVerPass]=React.useState('verify password');
+    const triviaScore = 0;
+    const memoryScore = 0;
+    const {player} = useContext(PlayerContext);
     const CheckInput=()=>{
-      if(/[A-Za-z]/.test(Pname)){
+      if(/[A-Za-z]/.test(first_name)){
         console.log("Private Name Isn't Valid");
       }
-      if(/[A-Za-z]/.test(Lname)){
+      if(/[A-Za-z]/.test(last_name)){
         console.log("Last Name Isn't Valid");
       }
       if(/^[A-Za-z][A-Za-z0-9_-|w/.]{7,29}$/.test(username)){
         console.log("Username Isn't Valid");
       }
-      if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(Email)){
+      if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
         console.log("Email Isn't Valid");
       }
       if(/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/.test(password)){
@@ -35,14 +39,7 @@ export default function SignUp() {
       createNewUser();  
     }
     const createNewUser=()=>{
-      let user = {
-        Pname,
-        Lname,
-        username,
-        Email,
-        password
-
-      }
+       Register(first_name, last_name, email, password, username, triviaScore, memoryScore)
     }
 
     return (
@@ -53,7 +50,7 @@ export default function SignUp() {
             <TextInput
               style={styles.input}
               onChangeText={(txt) => onChangePname(txt)}
-              value={Pname}
+              value={first_name}
               placeholder="Private Name"
               keyboardType="text"
             />
@@ -63,7 +60,7 @@ export default function SignUp() {
             <TextInput
               style={styles.input}
               onChangeText={(txt) => onChangeLname(txt)}
-              value={Lname}
+              value={last_name}
               placeholder="Last Name"
               keyboardType="text"
             />
@@ -83,7 +80,7 @@ export default function SignUp() {
             <TextInput
               style={styles.input}
               onChangeText={(txt) => onChangeEmail(txt)}
-              value={Email}
+              value={email}
               placeholder="Email"
               keyboardType="email-address"
             />

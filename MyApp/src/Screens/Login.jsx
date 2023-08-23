@@ -1,13 +1,16 @@
 import { View, Text,Image, TextInput, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import SignUp from './SignUp';
+import { PlayerContext } from '../Context/PlayerContext';
 
 export default function Login() {
     const [username, onChangeUserName] =  React.useState('username');
     const [password, onChangePassword] =  React.useState('password');
+    const {player} = useContext(PlayerContext);
     const CheckInput=()=>{
-      if (VerPass != password){
-        checkIfExists();
+          if (username == player.username && password == player.password) {
+            Login(username, password);
+          }
       }
       //TODO chek usename and password w/ data base
 
@@ -48,7 +51,6 @@ export default function Login() {
         </SafeAreaView>
       );
     }
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
