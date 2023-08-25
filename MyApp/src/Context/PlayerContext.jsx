@@ -102,7 +102,7 @@ export default function PlayerContextProvider({children}){
         UpdateUsername,
         UpdatePassword,
         GetUserById
-    }
+    } 
 
     return (
         <PlayerContext.Provider value={value}>

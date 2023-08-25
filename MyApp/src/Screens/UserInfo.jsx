@@ -1,23 +1,27 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
+import { PlayerContext } from '../Context/PlayerContext';
 
 export default function UserInfo() {
+  const {player} = useContext(PlayerContext);
+
+
   return (
     <View style={styles.container}>
       <View style={styles.greetingContainer}>
-        <Text style={styles.greetingText}>Hello Username...</Text>
+        <Text style={styles.greetingText}>Hello {player.username}...</Text>
       </View>
       <View style={styles.userInfoItem}>
         <Text style={styles.label}>Username:</Text>
-        <Text style={styles.info}>someusername</Text>
+        <Text style={styles.info}>{player.username}</Text>
       </View>
       <View style={styles.userInfoItem}>
         <Text style={styles.label}>Email:</Text>
-        <Text style={styles.info}>someEmail</Text>
+        <Text style={styles.info}>{player.email}</Text>
       </View>
       <View style={styles.userInfoItem}>
         <Text style={styles.label}>Password:</Text>
-        <Text style={styles.info}>somePassword</Text>
+        <Text style={styles.info}>{player.password}</Text>
       </View>
       <TouchableOpacity style={styles.editButton}>
         <Text style={styles.buttonText}>Edit Info</Text>

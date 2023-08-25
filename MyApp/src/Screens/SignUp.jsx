@@ -13,7 +13,7 @@ export default function SignUp() {
     const[password,onChangePassword]=React.useState('password');
     const[VerPass,onChangeVerPass]=React.useState('verify password');
     const triviaScore = 0;
-    const memoryScore = 0;
+    const memoryScore = 0; 
     const {player} = useContext(PlayerContext);
     const CheckInput=()=>{
       if(/[A-Za-z]/.test(first_name)){
