@@ -39,7 +39,7 @@ export default function SignUp() {
       createNewUser();  
     }
     const createNewUser=()=>{
-       Register(first_name, last_name, email, password, username, triviaScore, memoryScore)
+       Register(player.first_name, player.last_name, player.email, player.password, player.username, triviaScore, memoryScore)
     }
 
     return (
