@@ -82,12 +82,26 @@ export default function PlayerContextProvider({children}){
     }
     const GetUserById = async (id)=>{
         try {
-            let response = await fetch(`${base_api}/api/player/getPlayerById`,{
+            let response = await fetch(`${base_api}/api/player/getPlayerById/${id}`,{
                 method:'GET',
                 body:JSON.stringify({player})
             });
             if (response.ok) {
                 let data =await response.json();
+                setPlayer(data);
+            }
+        } catch (error) {
+            
+        }
+    }
+    const GetAll = async (id )=>{
+        try {
+            let response = await fetch(`${base_api}/api/player/`,{
+                method:'GET',
+                body:JSON.stringify({player})
+            });
+            if (response.ok) {
+                let data = await response.json();
                 setPlayer(data);
             }
         } catch (error) {
@@ -101,7 +115,8 @@ export default function PlayerContextProvider({children}){
         Register,
         UpdateUsername,
         UpdatePassword,
-        GetUserById
+        GetUserById,
+        GetAll
     } 
 
     return (
