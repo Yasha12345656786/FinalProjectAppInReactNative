@@ -108,6 +108,17 @@ export default function PlayerContextProvider({children}){
             
         }
     }
+ const GetByEmail = async(email)=>{
+    try {
+        let response = await fetch(`${base_api}/api/player/GetByEmail/${email}`);
+        if (response.ok) {
+            let data = await response.json();
+            setPlayer(data);
+        }
+    } catch (error) {
+        
+    }
+ }
 
     const value = {
         player,
@@ -116,7 +127,8 @@ export default function PlayerContextProvider({children}){
         UpdateUsername,
         UpdatePassword,
         GetUserById,
-        GetAll
+        GetAll,
+        GetByEmail
     } 
 
     return (

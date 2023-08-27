@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { PlayerContext } from '../Context/PlayerContext';
 
 export default function ForgotPassword()  {
+   const {player} = useContext(PlayerContext);
+
+   const CheckIfExists = (email) =>{
+       if (player.GetByEmail(email) == true) {
+            
+       }
+   }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Forgot Password</Text>
       <Text style={styles.description}>Enter your email address to reset your password.</Text>
       <TextInput
+        value='email'
         style={styles.input}
         placeholder="Email"
         placeholderTextColor="#999"
         keyboardType="email-address"
         autoCapitalize="none"
       />
-      <TouchableOpacity style={styles.resetButton}>
+      <TouchableOpacity style={styles.resetButton} onPress={()=>CheckIfExists(value)}>
         <Text style={styles.resetButtonText}>Reset Password</Text>
       </TouchableOpacity>
     </View>
