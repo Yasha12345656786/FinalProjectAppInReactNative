@@ -7,50 +7,48 @@ export default function Login() {
     const [username, onChangeUserName] =  React.useState('username');
     const [password, onChangePassword] =  React.useState('password');
     const {player} = useContext(PlayerContext);
-    const CheckInput=()=>{
-          if (username == player.username && password == player.password) {
-            Login(username, password);
+    const CheckInput=(username, password)=>{
+            player.Login(username, password);
           }
+          return (
+            <SafeAreaView style={styles.container}>
+              <ScrollView contentContainerStyle={styles.scrollViewContent}>
+                <View style={styles.inputContainer}>
+                  <Text style={styles.label}>Username:</Text>
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={onChangeUserName}
+                    value={username}
+                    placeholder="Username" 
+                    keyboardType="text"
+                  />
+                </View>
+                <View style={styles.inputContainer}>
+                  <Text style={styles.label}>Password:</Text>
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={onChangePassword}
+                    value={password}
+                    placeholder="Password"
+                    keyboardType="text"
+                    secureTextEntry
+                  />
+                </View>
+        
+                <TouchableOpacity style={styles.loginButton} onPress={CheckInput}>
+                  <Text style={styles.loginButtonText}>Log In</Text>
+                </TouchableOpacity>
+                <View> 
+                <TouchableOpacity onPress={()=>navigation.navigate(SignUp)}>
+                  <Text>No account?</Text>
+                </TouchableOpacity>
+              </View>
+              </ScrollView>
+            </SafeAreaView>
+          );
       }
       //TODO chek usename and password w/ data base
-
-      return (
-        <SafeAreaView style={styles.container}>
-          <ScrollView contentContainerStyle={styles.scrollViewContent}>
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Username:</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={onChangeUserName}
-                value={username}
-                placeholder="Username" 
-                keyboardType="text"
-              />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Password:</Text>
-              <TextInput
-                style={styles.input}
-                onChangeText={onChangePassword}
-                value={password}
-                placeholder="Password"
-                keyboardType="text"
-                secureTextEntry
-              />
-            </View>
     
-            <TouchableOpacity style={styles.loginButton} onPress={CheckInput}>
-              <Text style={styles.loginButtonText}>Log In</Text>
-            </TouchableOpacity>
-            <View> 
-            <TouchableOpacity onPress={()=>navigation.navigate(SignUp)}>
-              <Text>No account?</Text>
-            </TouchableOpacity>
-          </View>
-          </ScrollView>
-        </SafeAreaView>
-      );
-    }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
