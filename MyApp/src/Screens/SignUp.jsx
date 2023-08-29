@@ -1,11 +1,12 @@
-import { View, Text, SafeAreaView,StyleSheet,TextInput, TouchableOpacity,ScrollView  } from 'react-native'
+import { View, Text, SafeAreaView,StyleSheet,TextInput, TouchableOpacity,ScrollView, Alert  } from 'react-native'
 import React, { useContext } from 'react'
-import Login from './Login';
 import { PlayerContext } from '../Context/PlayerContext';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 export default function SignUp() {
+  const navigation = useNavigation();
     const[first_name,onChangePname]=React.useState('Private Name');
     const[last_name,onChangeLname]=React.useState('Last Name');
     const[username,onChangeUserName]=React.useState('username');
@@ -14,7 +15,7 @@ export default function SignUp() {
     const[VerPass,onChangeVerPass]=React.useState('verify password');
     const triviaScore = 0;
     const memoryScore = 0; 
-    const {player} = useContext(PlayerContext);
+    const {player, Register} = useContext(PlayerContext);
     const CheckInput=()=>{
       if(/[A-Za-z]/.test(first_name)){
         console.log("Private Name Isn't Valid");
@@ -22,7 +23,7 @@ export default function SignUp() {
       if(/[A-Za-z]/.test(last_name)){
         console.log("Last Name Isn't Valid");
       }
-      if(/^[A-Za-z][A-Za-z0-9_-|w/.]{7,29}$/.test(username)){
+      if(/^[A-Za-z][A-Za-z0-9_-|w/.]{7,14}$/.test(username)){
         console.log("Username Isn't Valid");
       }
       if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
@@ -38,8 +39,14 @@ export default function SignUp() {
       
       createNewUser();  
     }
-    const createNewUser=()=>{
-       Register(player.first_name, player.last_name, player.email, player.password, player.username, triviaScore, memoryScore)
+    const createNewUser= async ()=>{
+       let res = await Register(first_name,last_name,username,email,password);
+       if (res == false) {
+           Alert.alert("Something Is Wrong","please try again")
+       }
+       else{
+        navigation.navigate("Menu");
+      }
     }
 
     return (
@@ -113,7 +120,7 @@ export default function SignUp() {
             </TouchableOpacity>
           </View>
           <View> 
-            <TouchableOpacity onPress={()=>navigation.navigate(Login)}>
+            <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
               <Text>Already have an account?</Text>
             </TouchableOpacity>
           </View>

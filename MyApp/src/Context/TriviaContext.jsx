@@ -14,6 +14,7 @@ export default function TriviaContextProvider({ children }) {
             let response = await fetch(`${base_api}/api/triviaGame/GetNextLevelBylvl/${currentLevel}`);
             if (response.ok) {
                 let data = await response.json();
+                console.log('data', data)
                 setCurrentQuestion(data);
             }
         } catch (error) {

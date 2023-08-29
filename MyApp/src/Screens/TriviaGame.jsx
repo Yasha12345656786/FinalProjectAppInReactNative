@@ -1,25 +1,21 @@
-import { View, Text } from 'react-native';
-import React, { useContext, useState, useEffect } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { TriviaContext } from '../Context/TriviaContext';
-import { PlayerContext } from '../Context/PlayerContext';
+import { View, Text, TouchableOpacity } from "react-native";
+import React, { useContext, useState, useEffect } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { TriviaContext } from "../Context/TriviaContext";
+import { PlayerContext } from "../Context/PlayerContext";
 
 export default function TriviaGame() {
-
-  const { currentQuestion,currentAnswers, UpdateScore } = useContext(TriviaContext);
+  const { currentQuestion, currentAnswers, UpdateScore } =
+    useContext(TriviaContext);
   const { player } = useContext(PlayerContext);
 
-
   const AnswerPressed = (answer) => {
-    if(!answer.correct){
+    if (!answer.correct) {
       UpdateScore(player._id, 0);
+    } else {
+      UpdateScore(player._id, answer.points);
     }
-    else{
-      UpdateScore(player._id, answer.points)
-    }
-  }
-
+  };
 
   return (
     <SafeAreaView>
@@ -30,26 +26,21 @@ export default function TriviaGame() {
         <Text>{player.triviaScore}</Text>
       </View>
 
-
       <View>
         <Text>{currentQuestion.q}</Text>
       </View>
 
       <View>
-        {
-          currentQuestion.Answers.map((answer, index) => {
-            <TouchableOpacity key={index} onPress={() => AnswerPressed(answer)}>
-              <Text>
-                {answer.value}
-              </Text>
-            </TouchableOpacity>
-          })
-        }
-
-
+        {currentQuestion.Answers.map((answer, index) => (
+          <>
+          <TouchableOpacity key={index} onPress={()=>AnswerPressed(answer)}>
+            <Text>{answer.value}</Text>
+          </TouchableOpacity>
+          </>
+        ))}
       </View>
 
-
+     
     </SafeAreaView>
-  )
+  );
 }

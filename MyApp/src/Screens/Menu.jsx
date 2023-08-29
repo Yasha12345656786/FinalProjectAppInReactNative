@@ -4,35 +4,37 @@ import MemoryGameMenu from './MemoryGameMenu';
 import TriviaGameMenu from './TriviaGameMenu';
 import BeeInfoPage from './BeeInfoPage';
 import UserInfo from './UserInfo';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Menu() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=> navigation.navigate(MemoryGameMenu)} 
+        onPress={()=> navigation.navigate("MemoryGameMenu")} 
         >
           <Text style={styles.buttonText}>Memory Game</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate(TriviaGameMenu)}
+        onPress={()=>navigation.navigate("TriviaGameMenu")}
         >
           <Text style={styles.buttonText}>Trivia Game</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate(BeeInfoPage)}
+        onPress={()=>navigation.navigate("BeeInfoPage")}
         >
           <Text style={styles.buttonText}>Bee's Info Page</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate(UserInfo)}
+        onPress={()=>navigation.navigate("UserInfo")}
         >
           <Text style={styles.buttonText}>My Info</Text>
         </TouchableOpacity>

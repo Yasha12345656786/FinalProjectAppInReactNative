@@ -1,23 +1,15 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import SignUp from './SignUp';
-import Login from './Login';
-import ForgotPassword from './ForgotPassword';
-import ForgotUsername from './ForgotUsername';
-import MemoryGameLeaderboard from './MemoryGameLeaderBoard';
-import MemoryGameMenu from './MemoryGameMenu';
-import Menu from './Menu';
-import TriviaGameLeaderboard from './TriviaGameLeaderBoard';
-import TriviaGameMenu from './TriviaGameMenu';
-import UserInfo from './UserInfo';
+import { useNavigation } from '@react-navigation/native';
 
-export default function Home({ navigation }) {
+export default function Home() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate(Login)}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableOpacity>
@@ -25,7 +17,7 @@ export default function Home({ navigation }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate(SignUp)}
+          onPress={() => navigation.navigate("SignUp")}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
@@ -33,7 +25,7 @@ export default function Home({ navigation }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate(ForgotPassword)}
+          onPress={() => navigation.navigate("ForgotPassword")}
         >
           <Text style={styles.buttonText}>Forgot Password</Text>
         </TouchableOpacity>
@@ -41,7 +33,7 @@ export default function Home({ navigation }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate(ForgotUsername)}
+          onPress={() => navigation.navigate("ForgotUsername")}
         >
           <Text style={styles.buttonText}>Forgot Username</Text>
         </TouchableOpacity>

@@ -1,14 +1,22 @@
-import { View, Text,Image, TextInput, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import React, { useContext } from 'react'
-import SignUp from './SignUp';
+import { View, Text,Image, TextInput, SafeAreaView, TouchableOpacity, StyleSheet, ScrollView, Alert } from 'react-native'
+import React, { useContext } from 'react';
 import { PlayerContext } from '../Context/PlayerContext';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Login() {
+  const navigation = useNavigation();
     const [username, onChangeUserName] =  React.useState('username');
     const [password, onChangePassword] =  React.useState('password');
-    const {player} = useContext(PlayerContext);
-    const CheckInput=(username, password)=>{
-            player.Login(username, password);
+    const {player,Login} = useContext(PlayerContext);
+    const CheckInput= async ()=>{
+           let res = await Login(username, password);
+           if (res == null) {
+            Alert.alert("oops","Player Does Not Exist :( ")
+           }
+           else{
+             navigation.navigate("Menu");
+           }
           }
           return (
             <SafeAreaView style={styles.container}>
@@ -17,7 +25,7 @@ export default function Login() {
                   <Text style={styles.label}>Username:</Text>
                   <TextInput
                     style={styles.input}
-                    onChangeText={onChangeUserName}
+                    onChangeText={(text)=>onChangeUserName(text)}
                     value={username}
                     placeholder="Username" 
                     keyboardType="text"
@@ -27,7 +35,7 @@ export default function Login() {
                   <Text style={styles.label}>Password:</Text>
                   <TextInput
                     style={styles.input}
-                    onChangeText={onChangePassword}
+                    onChangeText={(text)=>onChangePassword(text)}
                     value={password}
                     placeholder="Password"
                     keyboardType="text"
@@ -39,7 +47,7 @@ export default function Login() {
                   <Text style={styles.loginButtonText}>Log In</Text>
                 </TouchableOpacity>
                 <View> 
-                <TouchableOpacity onPress={()=>navigation.navigate(SignUp)}>
+                <TouchableOpacity onPress={()=>navigation.navigate("SignUp")}>
                   <Text>No account?</Text>
                 </TouchableOpacity>
               </View>
