@@ -59,7 +59,9 @@ export default function PlayerContextProvider({ children }) {
         return true;
       }
       return false;
-    } catch (error) { console.log(error);}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const UpdateUsername = async (username) => {
@@ -88,10 +90,10 @@ export default function PlayerContextProvider({ children }) {
       if (response.ok) {
         let data = await response.json();
         setPlayer(data);
-        return data; 
+        return data;
       }
     } catch (error) {
-        console.log('jkjkjk',error);
+      console.log("jkjkjk", error);
     }
   };
   const GetUserById = async (id) => {
@@ -134,9 +136,9 @@ export default function PlayerContextProvider({ children }) {
 
     //update the user doc in collection
     let resposne = await UpdatePassword(id, pass);
-console.log('resposne', resposne)
+    console.log("resposne", resposne);
     if (resposne.ok) {
-        console.log('first')
+      console.log("first");
       //send email via email.js
       // code fragment
       let objToSend = {
@@ -144,19 +146,19 @@ console.log('resposne', resposne)
         template_id: "template_f0lisp1",
         user_id: "yVLhGWDVAc-Nm6xSY",
         template_params: {
-         user_email: email,
-         message: `your new password: ${pass}`
+          user_email: email,
+          message: `your new password: ${pass}`,
         },
       };
       let res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
-        headers:{
-            'Content-Type':'application/json'
+        headers: {
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify(objToSend)
+        body: JSON.stringify(objToSend),
       });
-      console.log('res', res);
-      if(res.ok) return true;
+      console.log("res", res);
+      if (res.ok) return true;
       else return false;
     }
   };
