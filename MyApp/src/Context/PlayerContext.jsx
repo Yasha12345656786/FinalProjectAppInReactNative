@@ -162,6 +162,38 @@ export default function PlayerContextProvider({ children }) {
       else return false;
     }
   };
+  const SendNewUsername = async (id, email) => {
+    //create new password
+    let username = Crypto.randomUUID();
+
+    //update the user doc in collection
+    let resposne = await UpdateUsername(id, username);
+    console.log("resposne", resposne);
+    if (resposne.ok) {
+      console.log("first");
+      //send email via email.js
+      // code fragment
+      let objToSend = {
+        service_id: "service_u1qhosa",
+        template_id: "template_f0lisp1",
+        user_id: "yVLhGWDVAc-Nm6xSY",
+        template_params: {
+          user_email: email,
+          message: `your new password: ${username}`,
+        },
+      };
+      let res = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(objToSend),
+      });
+      console.log("res", res);
+      if (res.ok) return true;
+      else return false;
+    }
+  };
 
   const value = {
     player,
@@ -173,6 +205,7 @@ export default function PlayerContextProvider({ children }) {
     GetAll,
     GetByEmail,
     SendNewPassword,
+    SendNewUsername
   };
 
   return (
