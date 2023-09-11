@@ -31,6 +31,7 @@ export default function TriviaContextProvider({ children }) {
             }
         } catch (error) {
             
+            
         }
 
     }
