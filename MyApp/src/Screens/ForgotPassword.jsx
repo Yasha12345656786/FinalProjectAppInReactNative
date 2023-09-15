@@ -1,3 +1,4 @@
+import emailjs from '@emailjs/browser';
 import React, { useContext, useState } from "react";
 import {
   View,
@@ -12,7 +13,7 @@ import { PlayerContext } from "../Context/PlayerContext";
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const { player, GetByEmail, SendNewPassword } = useContext(PlayerContext);
-
+  const [emailSent, setEmailSent] = useState(false);
   const CheckIfExists = async () => {
     let user = await GetByEmail(email);
     if (!user) {
@@ -26,7 +27,49 @@ export default function ForgotPassword() {
       else Alert.alert("error", "something wend wrong");
     }
   };
+  const EMAILJS_PUBLIC_KEY=' yVLhGWDVAc-Nm6xSY'
+  const sendEmail = () => {
+    // Initialize EmailJS with your public key
+    emailjs.init(EMAILJS_PUBLIC_KEY);
 
+    // Define the email data (replace with your service and template IDs)
+    const emailData = {
+      service_id: 'service_u1qhosa',
+      template_id: 'template_f0lisp1',
+      user_id: EMAILJS_PUBLIC_KEY, // User ID can be the same as your public key
+      template_params: {
+        to_email: 'recipient@example.com', // Replace with the recipient's email address
+        subject: 'Hello from EmailJS',
+        message: 'This is a test email sent from EmailJS in React Native!',
+      },
+    };
+
+    // Send the email
+    emailjs
+      .sendForm(emailData.service_id, emailData.template_id, emailData.template_params)
+      .then((response) => {
+        console.log('Email sent successfully:', response);
+        setEmailSent(true);
+      })
+      .catch((error) => {
+        console.error('Email sending failed:', error);
+        setEmailSent(false);
+      });
+  };
+  // const sendForgotPasswordEmail = () => {
+  //   emailjs
+  //     .send('service_u1qhosa', 'template_f0lisp1', {
+  //       to_email: 'recipient@example.com', // Replace with the recipient's email
+  //       subject: 'Forgot Password', // Subject
+  //       body: 'Please follow the link to reset your password.', // Email body
+  //     })
+  //     .then((response) => {
+  //       console.log('Email sent successfully:', response);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Email sending failed:', error);
+  //     });
+  // };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Forgot Password</Text>
@@ -41,7 +84,7 @@ export default function ForgotPassword() {
         autoCapitalize="none"
         onChangeText={(text) => setEmail(text)}
       />
-      <TouchableOpacity style={styles.resetButton} onPress={CheckIfExists}>
+      <TouchableOpacity style={styles.resetButton} onPress={sendEmail}>
         <Text style={styles.resetButtonText}>Reset Password</Text>
       </TouchableOpacity>
     </View>
