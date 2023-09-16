@@ -9,11 +9,30 @@ import {
   Alert,
 } from "react-native";
 import { PlayerContext } from "../Context/PlayerContext";
+import generatePassword from 'generate-password';
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState("");
-  const { player, GetByEmail, SendNewPassword } = useContext(PlayerContext);
+  // const [email, setEmail] = useState("");
+  // const { player, GetByEmail, SendNewPassword } = useContext(PlayerContext);
+  // const [emailSent, setEmailSent] = useState(false);
+  const [recipientEmail, setRecipientEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
+
+  const sendEmail = () => {
+    // Initialize EmailJS with your public key
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    // Define the email data (replace with your service and template IDs)
+    const emailData = {
+      service_id: 'YOUR_EMAILJS_SERVICE_ID',
+      template_id: 'YOUR_EMAILJS_TEMPLATE_ID',
+      user_id: EMAILJS_PUBLIC_KEY, // User ID can be the same as your public key
+      template_params: {
+        to_email: recipientEmail, // Use the entered email address
+        subject: 'Hello from EmailJS',
+        message: 'This is a test email sent from EmailJS in React Native!',
+      },
+    }
   const CheckIfExists = async () => {
     let user = await GetByEmail(email);
     if (!user) {
@@ -43,7 +62,6 @@ export default function ForgotPassword() {
         message: 'This is a test email sent from EmailJS in React Native!',
       },
     };
-
     // Send the email
     emailjs
       .sendForm(emailData.service_id, emailData.template_id, emailData.template_params)
@@ -71,22 +89,38 @@ export default function ForgotPassword() {
   //     });
   // };
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Forgot Password</Text>
-      <Text style={styles.description}>
-        Enter your email address to reset your password.
-      </Text>
+    // <View style={styles.container}>
+    //   <Text style={styles.title}>Forgot Password</Text>
+    //   <Text style={styles.description}>
+    //     Enter your email address to reset your password.
+    //   </Text>
+    //   <TextInput
+    //     style={styles.input}
+    //     placeholder="Email"
+    //     placeholderTextColor="#999"
+    //     keyboardType="email-address"
+    //     autoCapitalize="none"
+    //     onChangeText={(text) => setEmail(text)}
+    //   />
+    //   <TouchableOpacity style={styles.resetButton} onPress={sendEmail}>
+    //     <Text style={styles.resetButtonText}>Reset Password</Text>
+    //   </TouchableOpacity>
+    // </View>
+    <View>
+      <Text>Email Sender</Text>
       <TextInput
-        style={styles.input}
-        placeholder="Email"
-        placeholderTextColor="#999"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        onChangeText={(text) => setEmail(text)}
+        placeholder="Recipient's Email Address"
+        value={recipientEmail}
+        onChangeText={(text) => setRecipientEmail(text)}
+        style={{
+          borderWidth: 1,
+          borderColor: 'gray',
+          padding: 10,
+          marginBottom: 10,
+        }}
       />
-      <TouchableOpacity style={styles.resetButton} onPress={sendEmail}>
-        <Text style={styles.resetButtonText}>Reset Password</Text>
-      </TouchableOpacity>
+      <Button title="Send Email" onPress={sendEmail} disabled={emailSent} />
+      {emailSent && <Text>Email sent successfully!</Text>}
     </View>
   );
 }
