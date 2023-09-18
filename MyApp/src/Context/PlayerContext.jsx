@@ -34,11 +34,10 @@ export default function PlayerContextProvider({ children }) {
     email,
     password,
     username,
-    triviaScore,
-    memoryScore
+
   ) => {
     try {
-      let response = await fetch(`${base_api}/api/player/AddUser`, {
+      let response = await fetch(`http://localhost:5500/api/player/AddUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,12 +48,16 @@ export default function PlayerContextProvider({ children }) {
           email,
           password,
           username,
-          triviaScore,
-          memoryScore,
+     
         }),
       });
+      console.log(response)
+      console.log(response.status)
+      console.log(response.statusText)
       if (response.ok) {
+        console.log("sdsss");
         let data = await response.json();
+        console.log(data);
         setPlayer(data);
         return true;
       }

@@ -9,7 +9,6 @@ import {
   Alert,
 } from "react-native";
 import { PlayerContext } from "../Context/PlayerContext";
-import generatePassword from 'generate-password';
 
 export default function ForgotPassword() {
   // const [email, setEmail] = useState("");

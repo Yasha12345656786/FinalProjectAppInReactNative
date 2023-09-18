@@ -2,6 +2,10 @@
 	"dependencies": {
 		"expo": "^49.0.11",
 		"generate-password": "^1.7.0",
+		"metro-core": "^0.79.0",
 		"uuid": "^9.0.0"
+	},
+	"devDependencies": {
+		"metro": "^0.79.0"
 	}
 }
