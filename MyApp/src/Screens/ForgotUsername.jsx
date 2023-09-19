@@ -41,7 +41,7 @@ export default function ForgotUsername() {
         if (res == true) {
           Alert.alert(
             "We Found You",
-            "we sent a mail to the address to reset your username"
+            "we sent an email to your address to reset the username"
           );
         } else Alert.alert("error", "Something Went Wrong");
       }

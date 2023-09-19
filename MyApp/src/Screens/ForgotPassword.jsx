@@ -41,7 +41,7 @@ export default function ForgotPassword() {
     if (user.email) {
       let res = await SendNewPassword(user._id, user.email);
       if (res == true)
-        Alert.alert("we found you", "we sent a mail to the address to reset your password");
+        Alert.alert("we found you", "we sent an email to your address to reset the password");
       else Alert.alert("error", "something wend wrong");
     }
   };

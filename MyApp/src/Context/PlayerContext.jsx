@@ -31,13 +31,13 @@ export default function PlayerContextProvider({ children }) {
   const Register = async (
     first_name,
     last_name,
-    email,
-    password,
     username,
+    email,
+    password
 
   ) => {
     try {
-      let response = await fetch(`http://localhost:5500/api/player/AddUser`, {
+      let response = await fetch(`http://10.0.0.31:5500/api/player/AddUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,9 +45,9 @@ export default function PlayerContextProvider({ children }) {
         body: JSON.stringify({
           first_name,
           last_name,
-          email,
-          password,
           username,
+          email,
+          password
      
         }),
       });
