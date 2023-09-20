@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { base_api } from "../../utils/api";
 import * as Crypto from "expo-crypto";
+import { useNavigation } from '@react-navigation/native';
 
 export const PlayerContext = createContext();
 
@@ -8,6 +9,7 @@ export default function PlayerContextProvider({ children }) {
   const [player, setPlayer] = useState({});
 
   const Login = async (username, password) => {
+    
     console.log(username);
     try {
       let response = await fetch(`${base_api}/api/player/login`, {
@@ -19,8 +21,10 @@ export default function PlayerContextProvider({ children }) {
         body: JSON.stringify({ username, password }),
       });
       if (response.ok) {
+
         let data = await response.json();
         setPlayer(data);
+        
         return data;
       }
       return null;
@@ -92,9 +96,9 @@ export default function PlayerContextProvider({ children }) {
       console.log("jkjkjk", error);
     }
   };
-  const GetUserById = async (id) => {
+  const GetUserByUsername = async (username) => {
     try {
-      let response = await fetch(`${base_api}/api/player/getPlayerById/${id}`, {
+      let response = await fetch(`${base_api}/api/player/GetByUsername/${username}`, {
         method: "GET",
         body: JSON.stringify({ player }),
       });
@@ -197,7 +201,7 @@ export default function PlayerContextProvider({ children }) {
     Register,
     UpdateUsername,
     UpdatePassword,
-    GetUserById,
+    GetUserByUsername,
     GetAll,
     GetByEmail,
     SendNewPassword,

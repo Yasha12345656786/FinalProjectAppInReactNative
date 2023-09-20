@@ -6,8 +6,10 @@ import BeeInfoPage from './BeeInfoPage';
 import UserInfo from './UserInfo';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Menu() {
+export default function Menu({route}) {
   const navigation = useNavigation();
+  const {username}=route.params
+  console.log(username);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
@@ -34,7 +36,7 @@ export default function Menu() {
 
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate("UserInfo")}
+        onPress={()=>navigation.navigate("UserInfo",{username:username})}
         >
           <Text style={styles.buttonText}>My Info</Text>
         </TouchableOpacity>

@@ -16,7 +16,9 @@ export default function Login() {
             Alert.alert("oops","Player Does Not Exist :( ")
            }
            else{
-             navigation.navigate("Menu");
+             navigation.navigate("Menu",{
+              username:username
+             });
            }
           }
           return (

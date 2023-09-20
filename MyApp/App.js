@@ -13,6 +13,7 @@ import PlayerContextProvider from "./src/Context/PlayerContext";
 import TriviaContextProvider from "./src/Context/TriviaContext";
 import ForgotPassword from "./src/Screens/ForgotPassword";
 import ForgotUsername from "./src/Screens/ForgotUsername";
+import UserInfo from "./src/Screens/UserInfo";
 
 const Stack = createStackNavigator();
 
@@ -31,9 +32,12 @@ const MainMenu = () => {
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ForgotUsername" component={ForgotUsername} />
         <Stack.Screen name="Login" component={Login} />
+        
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Trivia" component={TriviaGame} />
         <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen name="UserInfo" component={UserInfo} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

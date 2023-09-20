@@ -45,8 +45,8 @@ export default function ForgotUsername() {
         user_id: EMAILJS_PUBLIC_KEY, // User ID can be the same as your public key
         template_params: {
           to_email: recipientEmail, // Replace with the recipient's email address
-          subject: "Hello from EmailJS",
-          message: "This is a test email sent from EmailJS in React Native!",
+          subject: "Click The Link Below To Reset Your Username:",
+          message: "'https://finalprojectserver.onrender.com/PlayerForgotUsername'",
         },
       };
       // Send the email
