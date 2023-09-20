@@ -5,7 +5,7 @@ import { base_api } from "../../utils/api";
 import { useEffect } from "react";
 export default function Home() {
   const navigation = useNavigation();
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>

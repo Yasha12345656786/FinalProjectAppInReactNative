@@ -10,7 +10,7 @@ export default function PlayerContextProvider({ children }) {
   const Login = async (username, password) => {
     console.log(username);
     try {
-      let response = await fetch(`http://10.0.0.31:5500/api/player/login`, {
+      let response = await fetch(`${base_api}/api/player/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,16 +29,9 @@ export default function PlayerContextProvider({ children }) {
     }
   };
 
-  const Register = async (
-    first_name,
-    last_name,
-    username,
-    email,
-    password
-
-  ) => {
+  const Register = async (first_name, last_name, username, email, password) => {
     try {
-      let response = await fetch(`http://10.0.0.31:5500/api/player/AddUser`, {
+      let response = await fetch(`${base_api}/api/player/AddUser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,13 +41,12 @@ export default function PlayerContextProvider({ children }) {
           last_name,
           username,
           email,
-          password
-     
+          password,
         }),
       });
-      console.log(response)
-      console.log(response.status)
-      console.log(response.statusText)
+      console.log(response);
+      console.log(response.status);
+      console.log(response.statusText);
       if (response.ok) {
         console.log("sdsss");
         let data = await response.json();
@@ -209,7 +201,7 @@ export default function PlayerContextProvider({ children }) {
     GetAll,
     GetByEmail,
     SendNewPassword,
-    SendNewUsername
+    SendNewUsername,
   };
 
   return (
