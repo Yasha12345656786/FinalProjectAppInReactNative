@@ -51,7 +51,7 @@ export default function ForgotUsername() {
       };
       // Send the email
       emailjs
-        .sendForm(
+        .send(
           emailData.service_id,
           emailData.template_id,
           emailData.template_params
