@@ -33,7 +33,7 @@ export default function ForgotUsername() {
         } else Alert.alert("error", "Something Went Wrong");
       }
     };
-    const EMAILJS_PUBLIC_KEY = "yVLhGWDVAc-Nm6xSY";
+    const EMAILJS_PUBLIC_KEY ="yVLhGWDVAc-Nm6xSY";
     const sendEmail = () => {
       // Initialize EmailJS with your public key
       emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -44,7 +44,7 @@ export default function ForgotUsername() {
         template_id: "template_9p1f9h3",
         user_id: EMAILJS_PUBLIC_KEY, // User ID can be the same as your public key
         template_params: {
-          to_email: {recipientEmail}, // Replace with the recipient's email address
+          to_email: recipientEmail, // Replace with the recipient's email address
           subject: "Hello from EmailJS",
           message: "This is a test email sent from EmailJS in React Native!",
         },
