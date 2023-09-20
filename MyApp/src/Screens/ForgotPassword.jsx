@@ -29,8 +29,7 @@ export default function ForgotPassword() {
       template_params: {
         to_email: recipientEmail, // Replace with the recipient's email address
         subject: "Click The Link Below To Reset Your Password:",
-        message:
-          "'https://finalprojectserver.onrender.com/PlayerForgotPassword'",
+        message: 'https://finalprojectserver.onrender.com/PlayerForgotPassword',
       },
     };
     // Send the email

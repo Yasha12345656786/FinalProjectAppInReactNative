@@ -1,8 +1,10 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React, { useEffect, useState, useContext } from "react";
 import { PlayerContext } from "../Context/PlayerContext";
+import { useNavigation } from '@react-navigation/native';
 
 export default function UserInfo({ route }) {
+  const navigation = useNavigation();
   const { player,GetUserByUsername } = useContext(PlayerContext);
   const { username } = route.params;
   const [userInfo, setUserInfo] = useState([]);
@@ -29,7 +31,7 @@ export default function UserInfo({ route }) {
       <TouchableOpacity style={styles.editButton}>
         <Text style={styles.buttonText}>Edit Info</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.logoutButton}>
+      <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate("Home")}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
     </View>
