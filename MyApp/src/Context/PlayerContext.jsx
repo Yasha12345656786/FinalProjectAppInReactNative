@@ -8,8 +8,9 @@ export default function PlayerContextProvider({ children }) {
   const [player, setPlayer] = useState({});
 
   const Login = async (username, password) => {
+    console.log(username);
     try {
-      let response = await fetch(`${base_api}/api/player/login`, {
+      let response = await fetch(`http://10.0.0.31:5500/api/player/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

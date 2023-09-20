@@ -5,22 +5,7 @@ import { base_api } from "../../utils/api";
 import { useEffect } from "react";
 export default function Home() {
   const navigation = useNavigation();
-  useEffect(async () => {
-    try {
-      let response = await fetch("http://10.0.0.31:5500");
-      if (response.ok) {
-        // Request was successful
-        let responseText = await response.text();
-        console.log(responseText); // Log the response content
-      } else {
-        // Handle error response
-        console.error("Request failed with status:", response.status);
-      }
-    } catch (error) {
-      // Handle network request error
-      console.error("Network request failed:", error);
-    }
-  }, [base_api]);
+
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  Button,
 } from "react-native";
 import { PlayerContext } from "../Context/PlayerContext";
 export default function ForgotUsername() {
@@ -15,21 +16,7 @@ export default function ForgotUsername() {
   const [recipientEmail, setRecipientEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
 
-  const sendEmail = () => {
-    // Initialize EmailJS with your public key
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-
-    // Define the email data (replace with your service and template IDs)
-    const emailData = {
-      service_id: "YOUR_EMAILJS_SERVICE_ID",
-      template_id: "YOUR_EMAILJS_TEMPLATE_ID",
-      user_id: EMAILJS_PUBLIC_KEY, // User ID can be the same as your public key
-      template_params: {
-        to_email: recipientEmail, // Use the entered email address
-        subject: "Hello from EmailJS",
-        message: "This is a test email sent from EmailJS in React Native!",
-      },
-    };
+ 
     const CheckIfExists = async () => {
       let user = await GetByEmail(email);
       if (!user) {
@@ -46,7 +33,7 @@ export default function ForgotUsername() {
         } else Alert.alert("error", "Something Went Wrong");
       }
     };
-    const EMAILJS_PUBLIC_KEY = " yVLhGWDVAc-Nm6xSY";
+    const EMAILJS_PUBLIC_KEY = "yVLhGWDVAc-Nm6xSY";
     const sendEmail = () => {
       // Initialize EmailJS with your public key
       emailjs.init(EMAILJS_PUBLIC_KEY);
@@ -79,25 +66,9 @@ export default function ForgotUsername() {
         });
     };
     return (
-      // <View style={styles.container}>
-      //   <Text style={styles.title}>Forgot Username</Text>
-      //   <Text style={styles.description}>
-      //     Enter your email address to recover your username.
-      //   </Text>
-      //   <TextInput
-      //     style={styles.input}
-      //     placeholder="Username"
-      //     placeholderTextColor="#999"
-      //     keyboardType="username"
-      //     autoCapitalize="none"
-      //     onChangeText={(text) => setUsername(text)}
-      //   />
-      //   <TouchableOpacity style={styles.recoverButton} onPress={CheckIfExists}>
-      //     <Text style={styles.recoverButtonText}>Recover Username</Text>
-      //   </TouchableOpacity>
-      // </View>
-      <View>
-        <Text>Email Sender</Text>
+
+      <View style={styles.container} >
+        <Text style={styles.text}>Email Sender</Text>
         <TextInput
           placeholder="Recipient's Email Address"
           value={recipientEmail}
@@ -156,4 +127,4 @@ export default function ForgotUsername() {
       fontWeight: "bold",
     },
   });
-}
+
