@@ -1,15 +1,15 @@
 import { createContext, useState, useEffect } from "react";
 import { base_api } from "../../utils/api";
 import * as Crypto from "expo-crypto";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 export const PlayerContext = createContext();
 
 export default function PlayerContextProvider({ children }) {
   const [player, setPlayer] = useState({});
+  const [allPlayer, setAllPlayer] = useState([]);
 
   const Login = async (username, password) => {
-    
     console.log(username);
     try {
       let response = await fetch(`${base_api}/api/player/login`, {
@@ -21,10 +21,9 @@ export default function PlayerContextProvider({ children }) {
         body: JSON.stringify({ username, password }),
       });
       if (response.ok) {
-
         let data = await response.json();
         setPlayer(data);
-        
+
         return data;
       }
       return null;
@@ -98,25 +97,29 @@ export default function PlayerContextProvider({ children }) {
   };
   const GetUserByUsername = async (username) => {
     try {
-      let response = await fetch(`${base_api}/api/player/GetByUsername/${username}`, {
-        method: "GET",
-        body: JSON.stringify({ player }),
-      });
+      let response = await fetch(
+        `${base_api}/api/player/GetByUsername/${username}`,
+        {
+          method: "GET",
+          body: JSON.stringify({ player }),
+        }
+      );
       if (response.ok) {
         let data = await response.json();
         setPlayer(data);
       }
     } catch (error) {}
   };
-  const GetAll = async (id) => {
+  const GetAll = async () => {
     try {
-      let response = await fetch(`${base_api}/api/player/`, {
-        method: "GET",
-        body: JSON.stringify({ player }),
+      let response = await fetch(`${base_api}/api/player`, {
+        method: "GET"
+        
       });
       if (response.ok) {
         let data = await response.json();
-        setPlayer(data);
+  
+        setAllPlayer(data);
       }
     } catch (error) {}
   };
@@ -197,6 +200,7 @@ export default function PlayerContextProvider({ children }) {
 
   const value = {
     player,
+    allPlayer,
     Login,
     Register,
     UpdateUsername,

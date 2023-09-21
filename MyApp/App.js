@@ -14,7 +14,11 @@ import TriviaContextProvider from "./src/Context/TriviaContext";
 import ForgotPassword from "./src/Screens/ForgotPassword";
 import ForgotUsername from "./src/Screens/ForgotUsername";
 import UserInfo from "./src/Screens/UserInfo";
-
+import TriviaGameLeaderBoard from "./src/Screens/TriviaGameLeaderBoard";
+import TriviaGameMenu from "./src/Screens/TriviaGameMenu";
+import MemoryGame from "./src/Screens/MemoryGame";
+import MemoryGameMenu from "./src/Screens/MemoryGameMenu";
+import MemoryGameLeaderBoard from "./src/Screens/MemoryGameLeaderBoard";
 const Stack = createStackNavigator();
 
 const MainMenu = () => {
@@ -34,9 +38,16 @@ const MainMenu = () => {
         <Stack.Screen name="Login" component={Login} />
         
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Trivia" component={TriviaGame} />
         <Stack.Screen name="Menu" component={Menu} />
         <Stack.Screen name="UserInfo" component={UserInfo} />
+
+        <Stack.Screen name="MemoryGameMenu" component={MemoryGameMenu} />
+        <Stack.Screen name="MemoryGame" component={MemoryGame} />
+        <Stack.Screen name="MemoryGameLeaderBoard" component={MemoryGameLeaderBoard} />
+
+        <Stack.Screen name="TriviaGameMenu" component={TriviaGameMenu} />
+        <Stack.Screen name="TriviaGame" component={TriviaGame} />
+        <Stack.Screen name="TriviaGameLeaderBoard" component={TriviaGameLeaderBoard} />
         
       </Stack.Navigator>
     </NavigationContainer>
@@ -49,6 +60,7 @@ export default function App() {
       <PlayerContextProvider>
         <TriviaContextProvider>
           <MainMenu />
+        
         </TriviaContextProvider>
       </PlayerContextProvider>
     </>

@@ -1,10 +1,11 @@
 import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import MemoryGame from './MemoryGame';
-import MemoryGameLeaderboard from './MemoryGameLeaderBoard';
+import MemoryGameLeaderBoard from './MemoryGameLeaderBoard';
 import Menu from './Menu';
-
+import { useNavigation } from "@react-navigation/native";
 export default function MemoryGameMenu() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
@@ -13,7 +14,7 @@ export default function MemoryGameMenu() {
       <View style={styles.menuItem}>
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate(MemoryGame)}
+        onPress={()=>navigation.navigate('MemoryGame')}
         >
           <Text style={styles.buttonText}>New Game</Text>
         </TouchableOpacity>
@@ -22,7 +23,7 @@ export default function MemoryGameMenu() {
       <View style={styles.menuItem}>
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate(MemoryGameLeaderboard)}
+        onPress={()=>navigation.navigate('MemoryGameLeaderBoard')}
         >
           <Text style={styles.buttonText}>Leaderboard</Text>
         </TouchableOpacity>
@@ -31,7 +32,7 @@ export default function MemoryGameMenu() {
       <View style={styles.menuItem}>
         <TouchableOpacity 
         style={styles.menuButton}
-        onPress={()=>navigation.navigate(Menu)}
+        onPress={()=>navigation.navigate('Menu')}
         >
           <Text style={styles.buttonText}>Main Menu</Text>
         </TouchableOpacity>

@@ -1,75 +1,65 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import React, { useContext, useState, useEffect } from "react";
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { PlayerContext } from "../Context/PlayerContext";
 
-export default function MemoryGameLeaderboard ({ data }) {
-  // Sample data format for the leaderboard (you can replace this with your actual data)
-  // data = [
-  //   { username: 'User1', score: 100 },
-  //   { username: 'User2', score: 90 },
-  //   { username: 'User3', score: 80 },
-  //   ...
-  // ];
+export default function TriviaGameLeaderBoard() {
+  const { allPlayer, GetAll } = useContext(PlayerContext);
 
-  const renderLeaderboardItem = ({ item, index }) => (
-    <View style={styles.leaderboardItem}>
-      <Text style={styles.rank}>{index + 1}</Text>
-      <Text style={styles.username}>{item.username}</Text>
-      <Text style={styles.score}>{item.score}</Text>
-    </View>
-  );
+  const [leaderboardData, setLeaderboardData] = useState([]);
+
+  useEffect(() => {
+    GetAll();
+  }, []);
+
+  useEffect(() => {
+  
+    const sortedData=allPlayer.slice().sort((a,b)=>b.memoryScore-a.memoryScore);
+    console.log(sortedData);
+    setLeaderboardData(sortedData)
+     
+  
+  }, [allPlayer]);
+
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Leaderboard</Text>
-      <FlatList
-        data={data}
-        renderItem={renderLeaderboardItem}
-        keyExtractor={(item, index) => index.toString()}
-        contentContainerStyle={styles.leaderboardList}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView  contentContainerStyle={styles.scrollContent}>
+        {leaderboardData.map((data, index) => (
+          <View style={styles.leaderboardItem} key={index}>
+            <Text  style={styles.usernameText}>{index+1}. {data.username}</Text>
+            <Text  style={styles.scoreText}>{data.memoryScore}</Text>
+          </View>
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f0f0', // Set the background color
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    backgroundColor: "#ffffff", // Background color of the container
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  leaderboardList: {
-    flexGrow: 1,
-    paddingBottom: 20,
+  scrollContent: {
+    padding: 16, // Add padding to the content inside the ScrollView
   },
   leaderboardItem: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: '#fff', // Set the item background color
-    borderRadius: 5,
-    elevation: 2, // Add some shadow for a raised effect
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc", // Separator color
   },
-  rank: {
+  usernameText: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: "bold",
+    color: "#333", // Username text color
   },
-  username: {
-    flex: 1,
-    fontSize: 18,
-    marginLeft: 10,
-  },
-  score: {
-    fontSize: 18,
-    fontWeight: 'bold',
+  scoreText: {
+    fontSize: 16,
+    color: "#666", // Score text color
   },
 });
-
