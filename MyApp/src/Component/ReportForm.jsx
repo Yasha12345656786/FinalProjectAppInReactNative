@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
 
 export default function ReportForm() {
-  const [typeOfGame, setTypeOfGame] = useState("");
-  const [levelNumber, setLevelNumber] = useState();
   const [typeOfError, setTypeOfError] = useState("");
+  const [errorLocation, setErrorLocation] = useState();
+  const [detailsOfError, setDetailOfError] = useState("");
 
   return (
     <View>
       <Text>ReportForm</Text>
-      <TextInput placeholder="Error Accurred In Trivia/Memory Game ?" ty />
-      <TextInput placeholder="In Which Level Did The Error Accurred ?" ty />
+      <TextInput placeholder="Error Accurred In Trivia/Memory Game or Interface Error ?" />
+      <TextInput placeholder="In Which Level Did The Error Accurred ? or Which Interface Has A Problem? For Example: Login/Resgister Screen"  />
       <TextInput
-        placeholder="What Type Of Error Accurred? Missing Letters/Images, Level Transiton, etc."
+        placeholder="What Type Of Error Accurred? Missing Letters/Images, Level Transiton, Missing Text, Login/SignUp Problems etc."
         ty
       />
       <Button title="Send Report" />

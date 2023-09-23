@@ -8,6 +8,7 @@ export const PlayerContext = createContext();
 export default function PlayerContextProvider({ children }) {
   const [player, setPlayer] = useState({});
   const [allPlayer, setAllPlayer] = useState([]);
+  
 
   const Login = async (username, password) => {
     console.log(username);
