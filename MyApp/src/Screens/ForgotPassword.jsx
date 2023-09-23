@@ -50,9 +50,9 @@ export default function ForgotPassword() {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Email Sender</Text>
+      <Text style={styles.text}>Your Email:</Text>
       <TextInput
-        placeholder="Recipient's Email Address"
+        placeholder="Your Email Address"
         value={recipientEmail}
         onChangeText={(text) => setRecipientEmail(text)}
         style={{
