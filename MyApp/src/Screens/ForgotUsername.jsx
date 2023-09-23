@@ -68,7 +68,7 @@ export default function ForgotUsername() {
     <View style={styles.container}>
       <Text style={styles.text}>Email Sender</Text>
       <TextInput
-        placeholder="Recipient's Email Address"
+        placeholder="Your Email Address"
         value={recipientEmail}
         onChangeText={(text) => setRecipientEmail(text)}
         style={{
