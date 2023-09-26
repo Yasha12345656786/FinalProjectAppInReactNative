@@ -1,31 +1,21 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { base_api } from "../../utils/api";
 import { useEffect } from "react";
-import LogoImage from "/Users/X/Desktop/שנה ב סמסטר ב/Final Project/FinalProjectAppInReactNative/MyApp/assets/Images/logo.png";
+import LogoImage from "../../assets/Images/logo.png";
 export default function Home() {
   const navigation = useNavigation();
-  
+
   return (
-    
     <View style={styles.container}>
-           options={({ navigation }) => ({
-             headerStyle:{height:150},
-             headerTitle: () => (
-               <View style={{  alignItems: "center" }}>
-                
-                 <Text style={{ fontSize: 18, marginLeft: 10 }}>Home</Text>
-                 <Image
-                     style={{ width: 85, height: 100 }}
-                     source={LogoImage}
-                     resizeMode="contain"
-                   />
-               </View>
-             ),
-             headerTitleStyle: { flex: 1, textAlign: "center" },
-           })}
-      <View style={styles.buttonContainer}>
+      <View style={{height:600,marginTop:50}}>
+        <Image source={LogoImage} style={{ width: 150, height: 150 }} />
+      </View>
+      <View style={{
+        position:"absolute",top:300
+      }}>
+        <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
           onPress={() => navigation.navigate("Login")}
@@ -57,13 +47,14 @@ export default function Home() {
           <Text style={styles.buttonText}>Forgot Username</Text>
         </TouchableOpacity>
       </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex:1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f0f0f0",

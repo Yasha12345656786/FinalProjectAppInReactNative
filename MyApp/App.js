@@ -39,21 +39,6 @@ const MainMenu = () => {
         <Stack.Screen
           name="Home"
           component={Home}
-          // options={({ navigation }) => ({
-          //   headerStyle:{height:150},
-          //   headerTitle: () => (
-          //     <View style={{  alignItems: "center" }}>
-                
-          //       <Text style={{ fontSize: 18, marginLeft: 10 }}>Home</Text>
-          //       <Image
-          //           style={{ width: 85, height: 100 }}
-          //           source={LogoImage}
-          //           resizeMode="contain"
-          //         />
-          //     </View>
-          //   ),
-          //   headerTitleStyle: { flex: 1, textAlign: "center" },
-          // })}
         />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ForgotUsername" component={ForgotUsername} />
