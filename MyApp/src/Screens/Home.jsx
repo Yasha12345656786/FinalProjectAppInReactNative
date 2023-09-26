@@ -3,11 +3,28 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { base_api } from "../../utils/api";
 import { useEffect } from "react";
+import LogoImage from "/Users/X/Desktop/שנה ב סמסטר ב/Final Project/FinalProjectAppInReactNative/MyApp/assets/Images/logo.png";
 export default function Home() {
   const navigation = useNavigation();
   
   return (
+    
     <View style={styles.container}>
+           options={({ navigation }) => ({
+             headerStyle:{height:150},
+             headerTitle: () => (
+               <View style={{  alignItems: "center" }}>
+                
+                 <Text style={{ fontSize: 18, marginLeft: 10 }}>Home</Text>
+                 <Image
+                     style={{ width: 85, height: 100 }}
+                     source={LogoImage}
+                     resizeMode="contain"
+                   />
+               </View>
+             ),
+             headerTitleStyle: { flex: 1, textAlign: "center" },
+           })}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.button}
