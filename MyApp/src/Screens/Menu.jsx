@@ -12,6 +12,8 @@ import TriviaGameMenu from "./TriviaGameMenu";
 import BeeInfoPage from "./BeeInfoPage";
 import UserInfo from "./UserInfo";
 import { useNavigation } from "@react-navigation/native";
+import {Image} from "react-native";
+import LogoImage from "../../assets/Images/logo.png";
 
 export default function Menu({ route }) {
   const navigation = useNavigation();
@@ -19,6 +21,9 @@ export default function Menu({ route }) {
   console.log(username);
   return (
     <SafeAreaView style={styles.container}>
+            <View style={{ height: 200, marginTop:10, justifyContent:"center",alignItems:"center" }}>
+          <Image source={LogoImage} style={{ width: 150, height: 150 }} />
+        </View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <TouchableOpacity
           style={styles.menuButton}

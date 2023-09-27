@@ -9,9 +9,11 @@ import {
   Alert,
 } from "react-native";
 import React, { useContext, useEffect } from "react";
+import { Image } from "react-native";
 import { PlayerContext } from "../Context/PlayerContext";
 import { useNavigation } from "@react-navigation/native";
 import { base_api } from "../../utils/api";
+import LogoImage from "../../assets/Images/logo.png";
 export default function SignUp() {
   const navigation = useNavigation();
   const [first_name, onChangePname] = React.useState("Private Name");
@@ -88,6 +90,9 @@ export default function SignUp() {
 
   return (
     <SafeAreaView style={styles.container}>
+        <View style={{ height: 200, marginTop:10, justifyContent:"center",alignItems:"center" }}>
+          <Image source={LogoImage} style={{ width: 150, height: 150 }} />
+        </View>
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.inputContainer}>
           <Text style={styles.label}>Private Name:</Text>

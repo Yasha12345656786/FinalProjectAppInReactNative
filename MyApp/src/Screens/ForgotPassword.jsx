@@ -1,5 +1,7 @@
 import emailjs from "@emailjs/browser";
 import React, { useCallback, useState } from "react";
+import {Image} from "react-native";
+import LogoImage from "../../assets/Images/logo.png"; 
 import {
   View,
   Text,
@@ -50,6 +52,9 @@ export default function ForgotPassword() {
   };
   return (
     <View style={styles.container}>
+           <View style={{  }}>
+          <Image source={LogoImage} style={{ width: 150, height: 150 }} />
+        </View>
       <Text style={styles.text}>Your Email:</Text>
       <TextInput
         placeholder="Your Email Address"

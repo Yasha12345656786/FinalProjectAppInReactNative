@@ -10,11 +10,16 @@ import TriviaGame from "./TriviaGame";
 import TriviaGameLeaderBoard from "./TriviaGameLeaderBoard";
 import Menu from "./Menu";
 import { useNavigation } from "@react-navigation/native";
+import {Image} from "react-native";
+import LogoImage from "../../assets/Images/logo.png";
 
 export default function TriviaGameMenu() {
   const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
+          <View style={{ height: 200, marginTop:10, justifyContent:"center",alignItems:"center" }}>
+          <Image source={LogoImage} style={{ width: 150, height: 150 }} />
+        </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Trivia Game</Text>
       </View>
