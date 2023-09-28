@@ -198,6 +198,18 @@ export default function PlayerContextProvider({ children }) {
       else return false;
     }
   };
+  const GetAdminById = async (id) => {
+    try {
+      let response = await fetch(`${base_api}/api/player/getPlayerById`, {
+        method: "GET",
+        body: JSON.stringfy({ player }),
+      });
+      if (response.ok) {
+        let data = await response.json();
+        setPlayer(data);
+      }
+    } catch (error) {}
+  };
 
   const value = {
     player,
@@ -211,6 +223,7 @@ export default function PlayerContextProvider({ children }) {
     GetByEmail,
     SendNewPassword,
     SendNewUsername,
+    GetAdminById 
   };
 
   return (

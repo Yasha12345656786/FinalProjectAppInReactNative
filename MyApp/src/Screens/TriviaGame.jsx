@@ -19,7 +19,8 @@ export default function TriviaGame() {
 
   return (
     <SafeAreaView>
-      <Text>TriviaGame</Text>
+      <Text>Trivia Game</Text>
+      <Text>Score:</Text>
 
       <View>
         <Text>{currentQuestion.lvl}</Text>

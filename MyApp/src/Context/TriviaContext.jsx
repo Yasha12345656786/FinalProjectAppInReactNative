@@ -6,21 +6,19 @@ export const TriviaContext = createContext();
 export default function TriviaContextProvider({ children }) {
 
     const [currentQuestion, setCurrentQuestion] = useState({});
-    const [currentLevel, setCurrentLevel] = useState(0);
-    const [currentAnswers, setCurrentAnswers]= useState([])
+  const [currentLevel, setCurrentLevel] = useState(0);
+  const [question, setQuestion] = useState(null);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-    const GetNextQuestion = async () => {
-        try {
-            let response = await fetch(`${base_api}/api/triviaGame/GetNextLevelBylvl/${currentLevel}`);
-            if (response.ok) {
-                let data = await response.json();
-                console.log('data', data)
-                setCurrentQuestion(data);
-            }
-        } catch (error) {
-
-        }
+  const GetNextQuestion = () => {
+    if (currentQuestionIndex < question.length - 1) {
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+    } else {
+      // Handle game completion logic here
+      alert('Game Over!');
     }
+  };
+  
     const GetNextAnswers = async () =>{
         try {
             let response = await fetch(`${base_api}/api/triviaGame/GetNextLevelBylvl/${currentLevel}`);
@@ -35,38 +33,62 @@ export default function TriviaContextProvider({ children }) {
         }
 
     }
-
-    const UpdateScore = async (id, score) => {
+    const GetQuestion = async () => {
+  
         try {
-            let response = await fetch(`${base_api}/api/player/AddPoints`, {
-                method: 'POST',
-                headers: {
-                    'Context-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id: id,
-                    type: 1,
-                    score: score
-                })
-            });
-            if (response.ok) {
-                setCurrentLevel((prev) => prev + 1);
-            }
+          const response = await fetch("https://finalprojectserver.onrender.com/api/triviaGame/",{
+            method: "GET"
+          }
+      
+          );
+          if (response.ok) {
+            const text = await response.json()
+            setQuestion(text)
+          } else {
+            console.error("Failed to fetch questions. Status code:", response.status);
+          }
         } catch (error) {
-
+          console.error("Error fetching questions:", error);
         }
-    }
+       
+      };
 
-    useEffect(() => {
-        GetNextQuestion();
-        GetNextAnswers();
-    }, [currentLevel])
+      const UpdateScore = async (id, score) => {
 
-    const value = {
+        try {
+          let response = await fetch("https://finalprojectserver.onrender.com/api/admin/AddPoints/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id,type:1, score }),
+         
+           
+          });
+          if (response.ok) {
+            let data = await response.json();
+            console.log(data);
+            setCurrentLevel((prev) => prev+1);
+          }
+        } catch (error) {
+          console.error(error)
+        }
+      };
+
+      useEffect(() => {
+        GetQuestion();
+    
+      }, []);
+
+      const value = {
+        GetNextQuestion,
         currentQuestion,
-        currentAnswers,
-        UpdateScore
-    }
+        currentQuestionIndex,
+        question,
+        GetQuestion,
+        UpdateScore,
+        GetNextAnswers
+      };
 
     return (
         <TriviaContext.Provider value={value}>
