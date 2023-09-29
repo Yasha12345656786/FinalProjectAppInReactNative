@@ -1,47 +1,216 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Button,
+  FlatList,
+  StyleSheet,
+} from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TriviaContext } from "../Context/TriviaContext";
 import { PlayerContext } from "../Context/PlayerContext";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import GameExitModal from "../Component/GameExitModal";
+import { useNavigation } from "@react-navigation/native";
 export default function TriviaGame() {
-  const { currentQuestion, currentAnswers, UpdateScore } =
+  const navigate = useNavigation();
+  const { question, currentQuestionIndex, GetNextQuestion, UpdateScore } =
     useContext(TriviaContext);
-  const { player } = useContext(PlayerContext);
+  const { player, GetPlayerById } = useContext(PlayerContext);
+  const [points, setPoints] = useState(0);
+  const [user, setUser] = useState([]);
+  const [showExitModal, setExitModal] = useState(false);
 
-  const AnswerPressed = (answer) => {
-    if (!answer.correct) {
-      UpdateScore(player._id, 0);
-    } else {
-      UpdateScore(player._id, answer.points);
+  const handleExit = () => {
+    setExitModal(false);
+    navigate.navigate('TriviaGameMenu')
+  };
+  
+  const handleContinue = () => {
+    setExitModal(false);
+  };
+
+  const getData = async () => {
+    try {
+      const PlayerID = await AsyncStorage.getItem("player");
+      setUser(PlayerID);
+    } catch (error) {
+      console.error(error);
     }
+  };
+  console.log(user);
+  useEffect(() => {
+    getData();
+    // setId(JSON.parse(PlayerID))
+  }, []);
+  console.log();
+  const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
+  const currentQuestion = question[currentQuestionIndex];
+  console.log(currentQuestion.points);
+  const handleOptionSelect = (selecteAnwer) => {
+    setSelectdOptionIndex(selecteAnwer);
+    handleNextClick();
+  };
+  // const AnswerPressed = (answer) => {
+  //   if (!answer.correct) {
+  //     UpdateScore(player._id, 0);
+  //   } else {
+  //     UpdateScore(player._id, answer.points);
+  //   }
+  // };
+  const handleNextClick = () => {
+    if (!currentQuestion) {
+      return;
+    }
+    // const correctAnswer = currentQuestion.Answers.find((answer) => answer.correct);
+    const correctAnswer = currentQuestion.Answers[selectedOptionIndex];
+    if (correctAnswer && correctAnswer.correct) {
+      UpdateScore(id._id, currentQuestion.points);
+      setPoints(points + currentQuestion.points);
+    } else {
+      console.error("error");
+    }
+
+    GetNextQuestion();
+    setSelectdOptionIndex(null);
   };
 
   return (
-    <SafeAreaView>
-      <Text>Trivia Game</Text>
-      <Text>Score:</Text>
-
-      <View>
-        <Text>{currentQuestion.lvl}</Text>
-        <Text>{player.triviaScore}</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Trivia Game</Text>
+        <Text style={styles.scoreText}>Score: {points}</Text>
       </View>
 
-      <View>
-        <Text>{currentQuestion.q}</Text>
-      </View>
+      {currentQuestion ? (
+        <View style={styles.questionContainer}>
+          <View style={styles.questionTextContainer}>
+            <Text style={styles.questionText}>{currentQuestion.q}</Text>
+          </View>
 
-      <View>
-        {currentQuestion.Answers.map((answer, index) => (
-          <>
-          <TouchableOpacity key={index} onPress={()=>AnswerPressed(answer)}>
-            <Text>{answer.value}</Text>
-          </TouchableOpacity>
-          </>
-        ))}
-      </View>
+          <FlatList
+            data={currentQuestion.Answers}
+            renderItem={({ item, index }) => (
+              <TouchableOpacity
+                onPress={() => handleOptionSelect(index)}
+                style={[
+                  styles.answerButton,
+                  selectedOptionIndex === index && styles.selectedAnswer,
+                  selectedOptionIndex !== null &&
+                    item.correct &&
+                    styles.correctAnswer,
+                ]}
+              >
+                <Text style={styles.answerText}>{item.value}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
 
-     
+          {/* <TouchableOpacity
+          onPress={handleNextClick}
+          style={styles.nextButton}
+        >
+          <Text style={styles.nextButtonText}>Next</Text>
+        </TouchableOpacity> */}
+        </View>
+      ) : (
+        <Text style={styles.loadingText}>Loading...</Text>
+      )}
+      <TouchableOpacity
+        onPress={() => setExitModal(true)}
+        style={styles.exitButton}
+      >
+        <Text style={styles.exitButtonText}>Exit Game</Text>
+      </TouchableOpacity>
+
+      <GameExitModal
+        visible={showExitModal}
+        onExit={handleExit}
+        onContinue={handleContinue}
+      />
     </SafeAreaView>
   );
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+  },
+  header: {
+    marginBottom: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  scoreText: {
+    fontSize: 18,
+  },
+  questionContainer: {
+    flex: 1,
+  },
+  questionTextContainer: {
+    marginBottom: 20,
+  },
+  questionText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  answerButton: {
+    width: "100%",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  selectedAnswer: {
+    backgroundColor: "#007bff",
+    borderColor: "#007bff",
+  },
+  correctAnswer: {
+    backgroundColor: "#4caf50",
+    borderColor: "#4caf50",
+  },
+  answerText: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "#333",
+  },
+  nextButton: {
+    backgroundColor: "#007bff",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  exitButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  nextButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  exitButton: {
+    backgroundColor: "red",
+    padding: 16,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 10,
+  },
+  loadingText: {
+    fontSize: 18,
+  },
+});

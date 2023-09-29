@@ -1,4 +1,4 @@
-import { Image, StyleSheet,View,Text } from "react-native";
+import { Image, StyleSheet, View, Text } from "react-native";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -26,7 +26,6 @@ const Stack = createStackNavigator();
 const MainMenu = () => {
   return (
     <NavigationContainer>
-      
       {/* <Tab.Navigator>
         <Tab.Screen name="Home" component={HomeMenu} options={{ tabBarLabel: 'Home', tabBarIcon: () => (<MaterialCommunityIcons name="home" size={35} color="black" />) }} />
         <Tab.Screen name="Login" component={Login} options={{ tabBarLabel: 'Login', tabBarIcon: () => (<MaterialCommunityIcons name="Login" size={35} color="black" />) }} />
@@ -35,11 +34,7 @@ const MainMenu = () => {
         <Tab.Screen name="Trivia" component={TriviaGame} options={{ tabBarLabel: 'Question', tabBarIcon: () => (<MaterialCommunityIcons name="Question" size={35} color="black" />) }} />
       </Tab.Navigator> */}
       <Stack.Navigator>
-        
-        <Stack.Screen
-          name="Home"
-          component={Home}
-        />
+        <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="ForgotUsername" component={ForgotUsername} />
         <Stack.Screen name="Login" component={Login} />
@@ -56,7 +51,13 @@ const MainMenu = () => {
         />
 
         <Stack.Screen name="TriviaGameMenu" component={TriviaGameMenu} />
-        <Stack.Screen name="TriviaGame" component={TriviaGame} />
+        <Stack.Screen
+          name="TriviaGame"
+          component={TriviaGame}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="TriviaGameLeaderBoard"
           component={TriviaGameLeaderBoard}

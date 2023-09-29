@@ -3,12 +3,21 @@ import { base_api } from "../../utils/api";
 import * as Crypto from "expo-crypto";
 import { useNavigation } from "@react-navigation/native";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
 export const PlayerContext = createContext();
 
 export default function PlayerContextProvider({ children }) {
   const [player, setPlayer] = useState({});
   const [allPlayer, setAllPlayer] = useState([]);
-  
+
+  const StoreData = async (value)=>{
+    try {
+      const jsonValue=JSON.stringify(value)
+      await AsyncStorage.setItem('player',jsonValue)
+    } catch (error) {
+      console.error({error});
+    }
+  }
 
   const Login = async (username, password) => {
     console.log(username);
@@ -24,7 +33,7 @@ export default function PlayerContextProvider({ children }) {
       if (response.ok) {
         let data = await response.json();
         setPlayer(data);
-
+        StoreData("player",data);
         return data;
       }
       return null;
