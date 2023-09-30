@@ -5,17 +5,19 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function UserInfo({ route }) {
   const navigation = useNavigation();
-  const { player,GetUserByUsername } = useContext(PlayerContext);
+  const { player,GetUserByUsername, GetPlayerById } = useContext(PlayerContext);
   const { username } = route.params;
   const [userInfo, setUserInfo] = useState([]);
+  
 
-
- 
+console.log(username);
+console.log("player",player);
   return (
     <View style={styles.container}>
       <View style={styles.greetingContainer}>
         <Text style={styles.greetingText}>Hello {username}</Text>
       </View>
+    <View>
       <View style={styles.userInfoItem}>
         <Text style={styles.label}>Username:</Text>
         <Text style={styles.info}>{player.player.username}</Text>
@@ -34,6 +36,7 @@ export default function UserInfo({ route }) {
       <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate("Home")}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 }

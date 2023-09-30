@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MemoryGameMenu from "./MemoryGameMenu";
 import TriviaGameMenu from "./TriviaGameMenu";
 import BeeInfoPage from "./BeeInfoPage";
@@ -18,7 +18,12 @@ import LogoImage from "../../assets/Images/logo.png";
 export default function Menu({ route }) {
   const navigation = useNavigation();
   const { username } = route.params;
-  console.log(username);
+  const [gamerUsername,setgamerUsername]=useState('')
+
+  useEffect(()=>{
+    setgamerUsername(username)
+  },[route])
+  console.log("gamer",gamerUsername);
   return (
     <SafeAreaView style={styles.container}>
             <View style={{ height: 200, marginTop:10, justifyContent:"center",alignItems:"center" }}>
@@ -49,7 +54,7 @@ export default function Menu({ route }) {
         <TouchableOpacity
           style={styles.menuButton}
           onPress={() =>
-            navigation.navigate("UserInfo", { username: username })
+            navigation.navigate("UserInfo", { username: gamerUsername })
           }
         >
           <Text style={styles.buttonText}>My Info</Text>

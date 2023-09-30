@@ -16,12 +16,12 @@ import { base_api } from "../../utils/api";
 import LogoImage from "../../assets/Images/logo.png";
 export default function SignUp() {
   const navigation = useNavigation();
-  const [first_name, onChangePname] = React.useState("Private Name");
-  const [last_name, onChangeLname] = React.useState("Last Name");
-  const [username, onChangeUserName] = React.useState("username");
-  const [email, onChangeEmail] = React.useState("email");
-  const [password, onChangePassword] = React.useState("password");
-  const [VerPass, onChangeVerPass] = React.useState("verify password");
+  const [first_name, onChangePname] = React.useState("");
+  const [last_name, onChangeLname] = React.useState("");
+  const [username, onChangeUserName] = React.useState("");
+  const [email, onChangeEmail] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
+  const [VerPass, onChangeVerPass] = React.useState("");
   const triviaScore = 0;
   const memoryScore = 0;
   const { player, Register } = useContext(PlayerContext);
@@ -65,27 +65,21 @@ export default function SignUp() {
       Alert.alert("Validation Error", errorMessage);
     }
   };
-  const test = async () => {
-    try {
-      const res=await fetch(`https://${base_api}/api/player/login`).then(re=>re.json())
 
-      console.log(res);
+
+ 
+
+  const createNewUser = async () => {
+    console.log("username",username);
+    try {
+      await Register(first_name, last_name, username, email, password);
+      navigation.navigate("Login");
+
     } catch (error) {
       console.log(error);
     }
-  };
 
-  useEffect(() => {
-    test();
-  }, []);
 
-  const createNewUser = async () => {
-    let res = await Register(first_name, last_name, username, email, password);
-    if (res == false) {
-      Alert.alert("Something Is Wrong", "please try again");
-    } else {
-      navigation.navigate("Menu");
-    }
   };
 
   return (

@@ -7,9 +7,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const PlayerContext = createContext();
 
 export default function PlayerContextProvider({ children }) {
+  
   const [player, setPlayer] = useState({});
   const [allPlayer, setAllPlayer] = useState([]);
-
+const [id,setId]=useState("");
   const StoreData = async (value)=>{
     try {
       const jsonValue=JSON.stringify(value)
@@ -20,7 +21,6 @@ export default function PlayerContextProvider({ children }) {
   }
 
   const Login = async (username, password) => {
-    console.log(username);
     try {
       let response = await fetch(`${base_api}/api/player/login`, {
         method: "POST",
@@ -43,6 +43,7 @@ export default function PlayerContextProvider({ children }) {
   };
 
   const Register = async (first_name, last_name, username, email, password) => {
+    console.log('username',username);
     try {
       let response = await fetch(`${base_api}/api/player/AddUser`, {
         method: "POST",
@@ -57,14 +58,12 @@ export default function PlayerContextProvider({ children }) {
           password,
         }),
       });
-      console.log(response);
-      console.log(response.status);
-      console.log(response.statusText);
+
       if (response.ok) {
-        console.log("sdsss");
+
         let data = await response.json();
         console.log(data);
-        setPlayer(data);
+        setId(data.insertedId);
         return true;
       }
       return false;
@@ -207,11 +206,10 @@ export default function PlayerContextProvider({ children }) {
       else return false;
     }
   };
-  const GetAdminById = async (id) => {
+  const GetPlayerById = async (id) => {
     try {
-      let response = await fetch(`${base_api}/api/player/getPlayerById`, {
-        method: "GET",
-        body: JSON.stringfy({ player }),
+      let response = await fetch(`${base_api}/api/player/getPlayerById/${id}`, {
+        method: "GET"
       });
       if (response.ok) {
         let data = await response.json();
@@ -232,7 +230,7 @@ export default function PlayerContextProvider({ children }) {
     GetByEmail,
     SendNewPassword,
     SendNewUsername,
-    GetAdminById 
+    GetPlayerById 
   };
 
   return (
