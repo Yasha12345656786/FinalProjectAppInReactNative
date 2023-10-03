@@ -1,8 +1,5 @@
 import { View, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
-import MemoryGame from './MemoryGame';
-import MemoryGameLeaderBoard from './MemoryGameLeaderBoard';
-import Menu from './Menu';
 import { useNavigation } from "@react-navigation/native";
 export default function MemoryGameMenu() {
   const navigation = useNavigation();

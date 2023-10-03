@@ -6,9 +6,6 @@ import {
   SafeAreaView,
 } from "react-native";
 import React from "react";
-import TriviaGame from "./TriviaGame";
-import TriviaGameLeaderBoard from "./TriviaGameLeaderBoard";
-import Menu from "./Menu";
 import { useNavigation } from "@react-navigation/native";
 import {Image} from "react-native";
 import LogoImage from "../../assets/Images/logo.png";

@@ -2,9 +2,8 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Button,
   FlatList,
-  StyleSheet,
+  StyleSheet
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -34,12 +33,13 @@ export default function TriviaGame() {
   const getData = async () => {
     try {
       const PlayerID = await AsyncStorage.getItem("player");
+      console.log("id:",PlayerID);
       setUser(PlayerID);
     } catch (error) {
       console.error(error);
     }
   };
-  console.log(user);
+  // console.log(user);
   useEffect(() => {
     getData();
     // setId(JSON.parse(PlayerID))

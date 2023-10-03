@@ -15,8 +15,8 @@ import { useNavigation } from "@react-navigation/native";
 import LogoImage from "../../assets/Images/logo.png";
 export default function Login() {
   const navigation = useNavigation();
-  const [username, onChangeUserName] = React.useState("username");
-  const [password, onChangePassword] = React.useState("password");
+  const [username, onChangeUserName] = React.useState("Treehq1234");
+  const [password, onChangePassword] = React.useState("Fdg-12345678");
   const { player, Login } = useContext(PlayerContext);
 
   const CheckInput = async () => {
@@ -42,7 +42,6 @@ export default function Login() {
             onChangeText={(text) => onChangeUserName(text)}
             value={username}
             placeholder="Username"
-            keyboardType="text"
           />
         </View>
         <View style={styles.inputContainer}>
@@ -52,7 +51,6 @@ export default function Login() {
             onChangeText={(text) => onChangePassword(text)}
             value={password}
             placeholder="Password"
-            keyboardType="text"
             secureTextEntry
           />
         </View>
