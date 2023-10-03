@@ -3,7 +3,7 @@ import {
   Text,
   TouchableOpacity,
   FlatList,
-  StyleSheet
+  StyleSheet,
 } from "react-native";
 import React, { useContext, useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,18 +14,26 @@ import GameExitModal from "../Component/GameExitModal";
 import { useNavigation } from "@react-navigation/native";
 export default function TriviaGame() {
   const navigate = useNavigation();
-  const { question, currentQuestionIndex, GetNextQuestion, UpdateScore } =
-    useContext(TriviaContext);
+  const {
+    question,
+    currentQuestionIndex,
+    setCurrentQuestionIndex,
+    GetNextQuestion,
+    UpdateScore,
+    setQuestion,
+  } = useContext(TriviaContext);
+  const [id, setId] = useState([]);
   const { player, GetPlayerById } = useContext(PlayerContext);
   const [points, setPoints] = useState(0);
   const [user, setUser] = useState([]);
   const [showExitModal, setExitModal] = useState(false);
-
+  const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
   const handleExit = () => {
     setExitModal(false);
-    navigate.navigate('TriviaGameMenu')
+    navigate.navigate("TriviaGameMenu");
+    setCurrentQuestionIndex(0);
   };
-  
+
   const handleContinue = () => {
     setExitModal(false);
   };
@@ -33,25 +41,30 @@ export default function TriviaGame() {
   const getData = async () => {
     try {
       const PlayerID = await AsyncStorage.getItem("player");
-      console.log("id:",PlayerID);
+
       setUser(PlayerID);
     } catch (error) {
       console.error(error);
     }
   };
-  // console.log(user);
+
   useEffect(() => {
     getData();
+    setId(player?.player);
     // setId(JSON.parse(PlayerID))
   }, []);
-  console.log();
-  const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
+
   const currentQuestion = question[currentQuestionIndex];
-  console.log(currentQuestion.points);
+
   const handleOptionSelect = (selecteAnwer) => {
+    console.log(selecteAnwer);
     setSelectdOptionIndex(selecteAnwer);
-    handleNextClick();
   };
+  useEffect(() => {
+    if (selectedOptionIndex !== null) {
+      handleNextClick();
+    }
+  }, [selectedOptionIndex]);
   // const AnswerPressed = (answer) => {
   //   if (!answer.correct) {
   //     UpdateScore(player._id, 0);
@@ -64,16 +77,23 @@ export default function TriviaGame() {
       return;
     }
     // const correctAnswer = currentQuestion.Answers.find((answer) => answer.correct);
-    const correctAnswer = currentQuestion.Answers[selectedOptionIndex];
-    if (correctAnswer && correctAnswer.correct) {
-      UpdateScore(id._id, currentQuestion.points);
-      setPoints(points + currentQuestion.points);
-    } else {
-      console.error("error");
-    }
+    console.log("sadasd", selectedOptionIndex);
+    if (selectedOptionIndex !== null) {
+      const correctAnswer = currentQuestion.Answers[selectedOptionIndex];
+      //  console.log("correctAnswer",currentQuestion.Answers);
+      // console.log("correctQ",correctAnswer.correct);
 
-    GetNextQuestion();
-    setSelectdOptionIndex(null);
+      if (correctAnswer && correctAnswer.correct)  {
+        console.log("dsad", currentQuestion?.points);
+        UpdateScore(id._id, currentQuestion?.points);
+        setPoints(points + currentQuestion?.points);
+      } else {
+        console.log("error");
+      }
+
+      GetNextQuestion();
+      setSelectdOptionIndex(null);
+    }
   };
 
   return (
@@ -94,13 +114,7 @@ export default function TriviaGame() {
             renderItem={({ item, index }) => (
               <TouchableOpacity
                 onPress={() => handleOptionSelect(index)}
-                style={[
-                  styles.answerButton,
-                  selectedOptionIndex === index && styles.selectedAnswer,
-                  selectedOptionIndex !== null &&
-                    item.correct &&
-                    styles.correctAnswer,
-                ]}
+                style={styles.answerButton}
               >
                 <Text style={styles.answerText}>{item.value}</Text>
               </TouchableOpacity>

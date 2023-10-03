@@ -20,10 +20,10 @@ export default function ForgotPassword() {
 
   const EMAILJS_PUBLIC_KEY = "yVLhGWDVAc-Nm6xSY";
   const sendEmail = () => {
+    console.log(recipientEmail)
     // Initialize EmailJS with your public key
     emailjs.init(EMAILJS_PUBLIC_KEY);
 
-    // Define the email data (replace with your service and template IDs)
     const emailData = {
       service_id: "service_u1qhosa",
       template_id: "template_f0lisp1",

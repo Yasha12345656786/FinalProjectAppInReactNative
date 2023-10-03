@@ -51,7 +51,7 @@ export default function TriviaContextProvider({ children }) {
   const UpdateScore = async (id, score) => {
 
     try {
-      let response = await fetch("https://finalprojectserver.onrender.com/api/admin/AddPoints/", {
+      let response = await fetch("https://finalprojectserver.onrender.com/api/player/AddPoints/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -78,7 +78,9 @@ export default function TriviaContextProvider({ children }) {
     GetNextQuestion,
     currentQuestion,
     currentQuestionIndex,
+    setCurrentQuestionIndex,
     question,
+    setQuestion,
     GetQuestion,
     UpdateScore,
   };

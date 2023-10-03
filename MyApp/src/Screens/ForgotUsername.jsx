@@ -11,7 +11,6 @@ import {
   Alert,
   Button,
 } from "react-native";
-import { PlayerContext } from "../Context/PlayerContext";
 export default function ForgotUsername() {
   // const [username, setUsername] = useState("");
   // const { player, GetByEmail, sendNewUsername } = useContext(PlayerContext);

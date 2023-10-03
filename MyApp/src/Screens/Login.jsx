@@ -15,8 +15,8 @@ import { useNavigation } from "@react-navigation/native";
 import LogoImage from "../../assets/Images/logo.png";
 export default function Login() {
   const navigation = useNavigation();
-  const [username, onChangeUserName] = React.useState("Treehq1234");
-  const [password, onChangePassword] = React.useState("Fdg-12345678");
+  const [username, onChangeUserName] = React.useState("");
+  const [password, onChangePassword] = React.useState("");
   const { player, Login } = useContext(PlayerContext);
 
   const CheckInput = async () => {
