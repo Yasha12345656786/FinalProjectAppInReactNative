@@ -20,18 +20,32 @@ export default function TriviaGame() {
     setCurrentQuestionIndex,
     GetNextQuestion,
     UpdateScore,
-    setQuestion,
+    points,
+    setPoints,
+    id,
+    GetQuestion,
+    setId
   } = useContext(TriviaContext);
-  const [id, setId] = useState([]);
+ 
   const { player, GetPlayerById } = useContext(PlayerContext);
-  const [points, setPoints] = useState(0);
   const [user, setUser] = useState([]);
   const [showExitModal, setExitModal] = useState(false);
   const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
+
+ const generateRandomNumber = () => { 
+    const min = 1; 
+    const max = question.length; 
+    const randomNumber = 
+        Math.floor(Math.random() * (max - min + 1)) + min; 
+    this.setState({ randomNumber }); 
+}; 
   const handleExit = () => {
+    UpdateScore(id._id,0)
+    setPoints(0);
+    setCurrentQuestionIndex(0);
     setExitModal(false);
     navigate.navigate("TriviaGameMenu");
-    setCurrentQuestionIndex(0);
+    
   };
 
   const handleContinue = () => {
@@ -51,10 +65,11 @@ export default function TriviaGame() {
   useEffect(() => {
     getData();
     setId(player?.player);
+    GetQuestion();
     // setId(JSON.parse(PlayerID))
   }, []);
 
-  const currentQuestion = question[currentQuestionIndex];
+  const currentQuestion = question ? question[currentQuestionIndex] : null;
 
   const handleOptionSelect = (selecteAnwer) => {
     console.log(selecteAnwer);

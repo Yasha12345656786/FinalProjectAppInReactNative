@@ -32,13 +32,6 @@ export default function Menu({ route }) {
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <TouchableOpacity
           style={styles.menuButton}
-          onPress={() => navigation.navigate("MemoryGameMenu")}
-        >
-          <Text style={styles.buttonText}>Memory Game</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.menuButton}
           onPress={() => navigation.navigate("TriviaGameMenu")}
         >
           <Text style={styles.buttonText}>Trivia Game</Text>

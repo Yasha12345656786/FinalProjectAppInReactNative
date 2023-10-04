@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { base_api } from "../../utils/api";
 import * as Crypto from "expo-crypto";
-import { useNavigation } from "@react-navigation/native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 export const PlayerContext = createContext();

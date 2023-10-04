@@ -1,7 +1,21 @@
 
 import React from 'react'
+import { useContext } from 'react';
 import { View,Text,TouchableOpacity,Modal } from 'react-native'
+import { TriviaContext } from "../Context/TriviaContext";
 function GameExitModal({visible,onExit,onContinue}) {
+    const {
+        question,
+        currentQuestionIndex,
+        setCurrentQuestionIndex,
+        GetNextQuestion,
+        UpdateScore,
+        points,
+        setPoints,
+        id,
+        GetQuestion,
+        setId
+      } = useContext(TriviaContext);
   return (
     <Modal
     visible={visible}

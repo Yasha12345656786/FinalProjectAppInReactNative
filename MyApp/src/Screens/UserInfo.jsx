@@ -26,10 +26,6 @@ console.log("player",player);
         <Text style={styles.label}>Email:</Text>
         <Text style={styles.info}>{player.player.email}</Text>
       </View>
-      <View style={styles.userInfoItem}>
-        <Text style={styles.label}>Password:</Text>
-        <Text style={styles.info}>{player.player.password}</Text>
-      </View>
       <TouchableOpacity style={styles.editButton}>
         <Text style={styles.buttonText}>Edit Info</Text>
       </TouchableOpacity>
