@@ -24,28 +24,29 @@ export default function TriviaGame() {
     setPoints,
     id,
     GetQuestion,
-    setId
+    endGame,
+    setId,
+    selectCorrectAnswer,
+    setSelectCorrectAnswer,
   } = useContext(TriviaContext);
- 
+
   const { player, GetPlayerById } = useContext(PlayerContext);
   const [user, setUser] = useState([]);
   const [showExitModal, setExitModal] = useState(false);
   const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
-
- const generateRandomNumber = () => { 
-    const min = 1; 
-    const max = question.length; 
-    const randomNumber = 
-        Math.floor(Math.random() * (max - min + 1)) + min; 
-    this.setState({ randomNumber }); 
-}; 
+console.log(currentQuestionIndex)
+  const generateRandomNumber = () => {
+    const min = 1;
+    const max = question.length;
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    this.setState({ randomNumber });
+  };
   const handleExit = () => {
-    UpdateScore(id._id,0)
+    UpdateScore(id._id, 0);
     setPoints(0);
     setCurrentQuestionIndex(0);
     setExitModal(false);
     navigate.navigate("TriviaGameMenu");
-    
   };
 
   const handleContinue = () => {
@@ -61,8 +62,11 @@ export default function TriviaGame() {
       console.error(error);
     }
   };
-
+  const currnetQuIndex = Math.floor(Math.random() * question.length);
+ 
   useEffect(() => {
+    
+    console.log("currnetQuIndex", currrnetQ);
     getData();
     setId(player?.player);
     GetQuestion();
@@ -92,24 +96,32 @@ export default function TriviaGame() {
       return;
     }
     // const correctAnswer = currentQuestion.Answers.find((answer) => answer.correct);
-    console.log("sadasd", selectedOptionIndex);
     if (selectedOptionIndex !== null) {
       const correctAnswer = currentQuestion.Answers[selectedOptionIndex];
+      setSelectCorrectAnswer(selectedOptionIndex);
       //  console.log("correctAnswer",currentQuestion.Answers);
       // console.log("correctQ",correctAnswer.correct);
 
-      if (correctAnswer && correctAnswer.correct)  {
-        console.log("dsad", currentQuestion?.points);
-        UpdateScore(id._id, currentQuestion?.points);
+      if (correctAnswer && correctAnswer.correct) {
+        // UpdateScore(id._id, currentQuestion?.points);
+        console.log("s", selectedOptionIndex);
         setPoints(points + currentQuestion?.points);
       } else {
         console.log("error");
       }
+      setTimeout(() => {
+        GetNextQuestion();
+      }, 1500);
 
-      GetNextQuestion();
       setSelectdOptionIndex(null);
     }
   };
+  useEffect(() => {
+    console.log(endGame);
+    if (endGame) {
+      navigate.navigate("TriviaGameMenu");
+    }
+  }, [endGame]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -126,14 +138,23 @@ export default function TriviaGame() {
 
           <FlatList
             data={currentQuestion.Answers}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity
-                onPress={() => handleOptionSelect(index)}
-                style={styles.answerButton}
-              >
-                <Text style={styles.answerText}>{item.value}</Text>
-              </TouchableOpacity>
-            )}
+            renderItem={({ item, index }) => {
+              console.log("selectCorrectAnswer", selectCorrectAnswer);
+              return (
+                <TouchableOpacity
+                  onPress={() => handleOptionSelect(index)}
+                  style={[
+                    styles.answerButton,
+                    selectCorrectAnswer === index &&
+                      (item.correct
+                        ? styles.correctAnswer
+                        : styles.incorrectAnswer),
+                  ]}
+                >
+                  <Text style={styles.answerText}>{item.value}</Text>
+                </TouchableOpacity>
+              );
+            }}
             keyExtractor={(item, index) => index.toString()}
           />
 
@@ -193,10 +214,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   answerButton: {
+    backgroundColor: "transparent",
     width: "100%",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderWidth: 1,
+
     borderColor: "#ccc",
     borderRadius: 5,
     marginBottom: 10,
@@ -208,6 +231,10 @@ const styles = StyleSheet.create({
   correctAnswer: {
     backgroundColor: "#4caf50",
     borderColor: "#4caf50",
+  },
+  incorrectAnswer: {
+    backgroundColor: "red",
+    borderColor: "red",
   },
   answerText: {
     fontSize: 16,

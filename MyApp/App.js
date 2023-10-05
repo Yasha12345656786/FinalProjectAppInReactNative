@@ -20,6 +20,7 @@ import MemoryGame from "./src/Screens/MemoryGame";
 import MemoryGameMenu from "./src/Screens/MemoryGameMenu";
 import MemoryGameLeaderBoard from "./src/Screens/MemoryGameLeaderBoard";
 import BeeInfoPage from "./src/Screens/BeeInfoPage";
+
 // import LogoImage from "./assets/Images/logo.png"
 const Stack = createStackNavigator();
 
@@ -49,6 +50,7 @@ const MainMenu = () => {
           name="MemoryGameLeaderBoard"
           component={MemoryGameLeaderBoard}
         />
+        
 
         <Stack.Screen name="TriviaGameMenu" component={TriviaGameMenu} />
         <Stack.Screen

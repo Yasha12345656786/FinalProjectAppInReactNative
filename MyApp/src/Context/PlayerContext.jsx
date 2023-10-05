@@ -9,6 +9,7 @@ export default function PlayerContextProvider({ children }) {
   
   const [player, setPlayer] = useState({});
   const [allPlayer, setAllPlayer] = useState([]);
+ 
 const [id,setId]=useState("");
   const StoreData = async (value)=>{
     try {

@@ -7,23 +7,38 @@ import {
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import {Image} from "react-native";
+import { Image } from "react-native";
 import LogoImage from "../../assets/Images/logo.png";
+import { useContext, useEffect } from "react";
+import { TriviaContext } from "../Context/TriviaContext";
 
 export default function TriviaGameMenu() {
   const navigation = useNavigation();
+  const { endGame, setEndGame } = useContext(TriviaContext);
+  useEffect(() => {
+    if (endGame) {
+      setEndGame(false);
+    }
+  }, [endGame]);
   return (
     <SafeAreaView style={styles.container}>
-          <View style={{ height: 200, marginTop:10, justifyContent:"center",alignItems:"center" }}>
-          <Image source={LogoImage} style={{ width: 150, height: 150 }} />
-        </View>
+      <View
+        style={{
+          height: 200,
+          marginTop: 10,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image source={LogoImage} style={{ width: 150, height: 150 }} />
+      </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Trivia Game</Text>
       </View>
       <View style={styles.menuItem}>
         <TouchableOpacity
           style={styles.menuButton}
-          onPress={() => navigation.navigate('TriviaGame')}
+          onPress={() => navigation.navigate("TriviaGame")}
         >
           <Text style={styles.buttonText}>New Game</Text>
         </TouchableOpacity>
@@ -31,7 +46,7 @@ export default function TriviaGameMenu() {
       <View style={styles.menuItem}>
         <TouchableOpacity
           style={styles.menuButton}
-          onPress={() => navigation.navigate('TriviaGameLeaderBoard')}
+          onPress={() => navigation.navigate("TriviaGameLeaderBoard")}
         >
           <Text style={styles.buttonText}>Leaderboard</Text>
         </TouchableOpacity>
@@ -39,7 +54,7 @@ export default function TriviaGameMenu() {
       <View style={styles.menuItem}>
         <TouchableOpacity
           style={styles.menuButton}
-          onPress={() => navigation.navigate('Menu')}
+          onPress={() => navigation.navigate("Menu")}
         >
           <Text style={styles.buttonText}>Main Menu</Text>
         </TouchableOpacity>
