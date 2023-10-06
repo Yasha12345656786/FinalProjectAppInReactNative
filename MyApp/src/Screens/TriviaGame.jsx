@@ -35,12 +35,6 @@ export default function TriviaGame() {
   const [showExitModal, setExitModal] = useState(false);
   const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
 console.log(currentQuestionIndex)
-  const generateRandomNumber = () => {
-    const min = 1;
-    const max = question.length;
-    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-    this.setState({ randomNumber });
-  };
   const handleExit = () => {
     UpdateScore(id._id, 0);
     setPoints(0);
@@ -66,7 +60,7 @@ console.log(currentQuestionIndex)
  
   useEffect(() => {
     
-    console.log("currnetQuIndex", currrnetQ);
+    console.log("currnetQuIndex");
     getData();
     setId(player?.player);
     GetQuestion();
