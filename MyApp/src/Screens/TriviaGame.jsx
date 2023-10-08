@@ -105,9 +105,11 @@ console.log(currentQuestionIndex)
       }
       setTimeout(() => {
         GetNextQuestion();
+        setSelectdOptionIndex(null);
       }, 1500);
 
-      setSelectdOptionIndex(null);
+      // setSelectdOptionIndex(null);
+      
     }
   };
   useEffect(() => {
