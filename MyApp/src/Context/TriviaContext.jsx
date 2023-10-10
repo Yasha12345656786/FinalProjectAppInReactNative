@@ -17,11 +17,10 @@ export default function TriviaContextProvider({ children }) {
   const GetNextQuestion = () => {
     console.log(question[currentQuestionIndex]?.points || 0);
     if (currentQuestionIndex < question.length - 1) {
-      setCurrentQuestionIndex((prevIndex) =>
-        Math.floor(Math.random(prevIndex) + 1)
-      );
+      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setSelectCorrectAnswer(null);
     } else {
+      console.log("end ");
       // Handle game completion logic here
       Alert.alert("Game Over!", "Your Trivia Score Has Been Updated", [
         {

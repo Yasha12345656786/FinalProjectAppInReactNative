@@ -26,9 +26,10 @@ console.log("player",player);
         <Text style={styles.label}>Email:</Text>
         <Text style={styles.info}>{player.player.email}</Text>
       </View>
-      <TouchableOpacity style={styles.editButton}>
-        <Text style={styles.buttonText}>Edit Info</Text>
-      </TouchableOpacity>
+      <View style={styles.userInfoItem}>
+        <Text style={styles.label}>Trivia Score:</Text>
+        <Text style={styles.info}>{player.player.triviaScore}</Text>
+      </View>
       <TouchableOpacity style={styles.logoutButton} onPress={()=>navigation.navigate("Home")}>
         <Text style={styles.buttonText}>Log Out</Text>
       </TouchableOpacity>
