@@ -15,34 +15,34 @@ export default function TriviaContextProvider({ children }) {
   const [endGame, setEndGame] = useState(false);
 
   const GetNextQuestion = () => {
-    console.log(question[currentQuestionIndex]?.points || 0);
     if (currentQuestionIndex < question.length - 1) {
       setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       setSelectCorrectAnswer(null);
     } else {
       console.log("end ");
+      setCurrentQuestionIndex(0);
+      setSelectCorrectAnswer(null);
+      AlertEndGame();
       // Handle game completion logic here
-      Alert.alert("Game Over!", "Your Trivia Score Has Been Updated", [
-        {
-          text: "Ok",
-          onPress: AlertEndGame,
-          style: "default",
-        },
-      ]);
+      // Alert.alert("Game Over!", "Your Trivia Score Has Been Updated", [
+      //   {
+      //     text: "Ok",
+      //     onPress: AlertEndGame,
+      //     style: "default",
+      //   },
+      // ]);
     }
   };
   const AlertEndGame = () => {
-    const totalPoints = points + question[currentQuestionIndex]?.points;
-    console.log("end");
-    setPoints(totalPoints);
-    UpdateScore(id._id, totalPoints);
-
     setCurrentQuestionIndex(0);
     setPoints(0);
-
+    setSelectCorrectAnswer(null);
     setQuestion(0);
 
     setEndGame(true);
+    const totalPoints = points
+    setPoints(totalPoints);
+    UpdateScore(id._id, totalPoints);
   };
   const GetQuestion = async () => {
     try {

@@ -34,7 +34,7 @@ export default function TriviaGame() {
   const [user, setUser] = useState([]);
   const [showExitModal, setExitModal] = useState(false);
   const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
-console.log(currentQuestionIndex)
+
   const handleExit = () => {
     UpdateScore(id._id, 0);
     setPoints(0);
@@ -57,10 +57,8 @@ console.log(currentQuestionIndex)
     }
   };
   const currnetQuIndex = Math.floor(Math.random() * question.length);
- 
+
   useEffect(() => {
-    
-    console.log("currnetQuIndex");
     getData();
     setId(player?.player);
     GetQuestion();
@@ -70,7 +68,7 @@ console.log(currentQuestionIndex)
   const currentQuestion = question ? question[currentQuestionIndex] : null;
 
   const handleOptionSelect = (selecteAnwer) => {
-    console.log(selecteAnwer);
+   
     setSelectdOptionIndex(selecteAnwer);
   };
   useEffect(() => {
@@ -98,7 +96,7 @@ console.log(currentQuestionIndex)
 
       if (correctAnswer && correctAnswer.correct) {
         // UpdateScore(id._id, currentQuestion?.points);
-        console.log("s", selectedOptionIndex);
+   
         setPoints(points + currentQuestion?.points);
       } else {
         console.log("error");
@@ -109,11 +107,10 @@ console.log(currentQuestionIndex)
       }, 1500);
 
       // setSelectdOptionIndex(null);
-      
     }
   };
   useEffect(() => {
-    console.log(endGame);
+
     if (endGame) {
       navigate.navigate("TriviaGameMenu");
     }
@@ -135,7 +132,7 @@ console.log(currentQuestionIndex)
           <FlatList
             data={currentQuestion.Answers}
             renderItem={({ item, index }) => {
-              console.log("selectCorrectAnswer", selectCorrectAnswer);
+            
               return (
                 <TouchableOpacity
                   onPress={() => handleOptionSelect(index)}
