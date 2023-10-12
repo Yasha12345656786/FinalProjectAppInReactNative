@@ -41,7 +41,11 @@ const MainMenu = () => {
         <Stack.Screen name="Login" component={Login} />
 
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen
+          name="Menu"
+          component={Menu}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="UserInfo" component={UserInfo} />
         <Stack.Screen name="BeeInfoPage" component={BeeInfoPage} />
         <Stack.Screen name="MemoryGameMenu" component={MemoryGameMenu} />
@@ -50,7 +54,6 @@ const MainMenu = () => {
           name="MemoryGameLeaderBoard"
           component={MemoryGameLeaderBoard}
         />
-        
 
         <Stack.Screen name="TriviaGameMenu" component={TriviaGameMenu} />
         <Stack.Screen

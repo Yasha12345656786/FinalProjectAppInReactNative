@@ -49,7 +49,7 @@ export default function SignUp() {
       validationPassed = false;
     }
 
-    if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/.test(password)) {
+    if (!/^[A-Za-z][A-Za-z0-9_-]{7,14}$/.test(password)) {
       errorMessage += "Password Isn't Valid\n";
       validationPassed = false;
     }
