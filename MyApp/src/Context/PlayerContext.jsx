@@ -9,8 +9,7 @@ export default function PlayerContextProvider({ children }) {
   
   const [player, setPlayer] = useState({});
   const [allPlayer, setAllPlayer] = useState([]);
- 
-const [id,setId]=useState("");
+
   const StoreData = async (value)=>{
     try {
       const jsonValue=JSON.stringify(value)
@@ -62,8 +61,6 @@ const [id,setId]=useState("");
       if (response.ok) {
 
         let data = await response.json();
-        console.log(data);
-        setId(data.insertedId);
         return true;
       }
       return false;

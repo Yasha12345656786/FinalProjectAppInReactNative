@@ -11,17 +11,14 @@ import {
   Alert,
   Button,
 } from "react-native";
-import { PlayerContext } from "../Context/PlayerContext";
 export default function ForgotPassword() {
-  // const [username, setUsername] = useState("");
-  // const { player, GetByEmail, sendNewUsername } = useContext(PlayerContext);
   const [recipientEmail, setRecipientEmail] = useState("");
   const [emailSent, setEmailSent] = useState(false);
 
+  
   const EMAILJS_PUBLIC_KEY = "yVLhGWDVAc-Nm6xSY";
   const sendEmail = () => {
     console.log(recipientEmail)
-    // Initialize EmailJS with your public key
     emailjs.init(EMAILJS_PUBLIC_KEY);
 
     const emailData = {

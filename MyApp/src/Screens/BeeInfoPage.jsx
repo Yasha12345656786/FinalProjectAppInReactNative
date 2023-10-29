@@ -9,6 +9,7 @@ export default function BeeInfoPage() {
   const [error, setError] = useState()
   const url =
     "https://en.wikipedia.org/w/api.php?action=query&origin=*&prop=extracts&format=json&titles=Bee";
+    
     const extractAPIContents = (json) => {
       const { pages } = json.query;
       return Object.keys(pages).map((id) => pages[id].extract);

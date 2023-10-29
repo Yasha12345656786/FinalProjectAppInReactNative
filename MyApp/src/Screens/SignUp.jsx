@@ -12,7 +12,6 @@ import React, { useContext, useEffect } from "react";
 import { Image } from "react-native";
 import { PlayerContext } from "../Context/PlayerContext";
 import { useNavigation } from "@react-navigation/native";
-import { base_api } from "../../utils/api";
 import LogoImage from "../../assets/Images/logo.png";
 export default function SignUp() {
   const navigation = useNavigation();
@@ -22,9 +21,7 @@ export default function SignUp() {
   const [email, onChangeEmail] = React.useState("");
   const [password, onChangePassword] = React.useState("");
   const [VerPass, onChangeVerPass] = React.useState("");
-  const triviaScore = 0;
-  const memoryScore = 0;
-  const { player, Register } = useContext(PlayerContext);
+  const { Register } = useContext(PlayerContext);
   const CheckInput = () => {
     let validationPassed = true;
     let errorMessage = "";

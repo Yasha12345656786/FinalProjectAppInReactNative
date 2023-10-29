@@ -9,7 +9,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TriviaContext } from "../Context/TriviaContext";
 import { PlayerContext } from "../Context/PlayerContext";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import GameExitModal from "../Component/GameExitModal";
 import { useNavigation } from "@react-navigation/native";
 export default function TriviaGame() {
@@ -30,8 +29,7 @@ export default function TriviaGame() {
     setSelectCorrectAnswer,
   } = useContext(TriviaContext);
 
-  const { player, GetPlayerById } = useContext(PlayerContext);
-  const [user, setUser] = useState([]);
+  const { player } = useContext(PlayerContext);
   const [showExitModal, setExitModal] = useState(false);
   const [selectedOptionIndex, setSelectdOptionIndex] = useState(null);
 
@@ -47,22 +45,10 @@ export default function TriviaGame() {
     setExitModal(false);
   };
 
-  const getData = async () => {
-    try {
-      const PlayerID = await AsyncStorage.getItem("player");
-
-      setUser(PlayerID);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const currnetQuIndex = Math.floor(Math.random() * question.length);
 
   useEffect(() => {
-    getData();
     setId(player?.player);
     GetQuestion();
-    // setId(JSON.parse(PlayerID))
   }, []);
 
   const currentQuestion = question ? question[currentQuestionIndex] : null;
@@ -76,26 +62,18 @@ export default function TriviaGame() {
       handleNextClick();
     }
   }, [selectedOptionIndex]);
-  // const AnswerPressed = (answer) => {
-  //   if (!answer.correct) {
-  //     UpdateScore(player._id, 0);
-  //   } else {
-  //     UpdateScore(player._id, answer.points);
-  //   }
-  // };
+
   const handleNextClick = () => {
     if (!currentQuestion) {
       return;
     }
-    // const correctAnswer = currentQuestion.Answers.find((answer) => answer.correct);
+  
     if (selectedOptionIndex !== null) {
       const correctAnswer = currentQuestion.Answers[selectedOptionIndex];
       setSelectCorrectAnswer(selectedOptionIndex);
-      //  console.log("correctAnswer",currentQuestion.Answers);
-      // console.log("correctQ",correctAnswer.correct);
-
+    
       if (correctAnswer && correctAnswer.correct) {
-        // UpdateScore(id._id, currentQuestion?.points);
+       
    
         setPoints(points + currentQuestion?.points);
       } else {
@@ -106,7 +84,7 @@ export default function TriviaGame() {
         setSelectdOptionIndex(null);
       }, 1500);
 
-      // setSelectdOptionIndex(null);
+      
     }
   };
   useEffect(() => {
@@ -151,12 +129,6 @@ export default function TriviaGame() {
             keyExtractor={(item, index) => index.toString()}
           />
 
-          {/* <TouchableOpacity
-          onPress={handleNextClick}
-          style={styles.nextButton}
-        >
-          <Text style={styles.nextButtonText}>Next</Text>
-        </TouchableOpacity> */}
         </View>
       ) : (
         <Text style={styles.loadingText}>Loading...</Text>

@@ -5,13 +5,8 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function UserInfo({ route }) {
   const navigation = useNavigation();
-  const { player,GetUserByUsername, GetPlayerById } = useContext(PlayerContext);
-  const { username } = route.params;
-  const [userInfo, setUserInfo] = useState([]);
+  const { player } = useContext(PlayerContext);
   
-
-console.log(username);
-console.log("player",player);
   return (
     <View style={styles.container}>
       <View style={styles.greetingContainer}>
