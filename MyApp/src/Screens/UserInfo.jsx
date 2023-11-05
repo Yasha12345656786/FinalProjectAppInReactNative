@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React, { useEffect, useState, useContext } from "react";
+import React, {useContext } from "react";
 import { PlayerContext } from "../Context/PlayerContext";
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,7 +10,7 @@ export default function UserInfo({ route }) {
   return (
     <View style={styles.container}>
       <View style={styles.greetingContainer}>
-        <Text style={styles.greetingText}>Hello {username}</Text>
+        <Text style={styles.greetingText}>Hello {player.player.username}</Text>
       </View>
     <View>
       <View style={styles.userInfoItem}>
