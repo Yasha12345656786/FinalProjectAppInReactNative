@@ -26,14 +26,6 @@ export default function MemoryGameMenu() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.menuItem}>
-        <TouchableOpacity 
-        style={styles.menuButton}
-        onPress={()=>navigation.navigate('Menu')}
-        >
-          <Text style={styles.buttonText}>Main Menu</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 }

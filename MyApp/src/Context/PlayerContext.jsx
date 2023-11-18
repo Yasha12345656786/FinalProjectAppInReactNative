@@ -98,7 +98,7 @@ export default function PlayerContextProvider({ children }) {
         return data;
       }
     } catch (error) {
-      console.log("jkjkjk", error);
+      console.log("error", error);
     }
   };
   const GetUserByUsername = async (username) => {

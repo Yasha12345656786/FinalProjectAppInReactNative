@@ -51,14 +51,6 @@ export default function TriviaGameMenu() {
           <Text style={styles.buttonText}>Leaderboard</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.menuItem}>
-        <TouchableOpacity
-          style={styles.menuButton}
-          onPress={() => navigation.navigate("Menu")}
-        >
-          <Text style={styles.buttonText}>Main Menu</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 }

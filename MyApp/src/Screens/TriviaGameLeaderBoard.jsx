@@ -18,7 +18,6 @@ export default function TriviaGameLeaderBoard() {
   useEffect(() => {
   
     const sortedData=allPlayer.slice().sort((a,b)=>b.triviaScore-a.triviaScore);
-    console.log(sortedData);
     setLeaderboardData(sortedData)
      
   
