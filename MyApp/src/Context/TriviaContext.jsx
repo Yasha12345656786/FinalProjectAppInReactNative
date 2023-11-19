@@ -23,14 +23,6 @@ export default function TriviaContextProvider({ children }) {
       setCurrentQuestionIndex(0);
       setSelectCorrectAnswer(null);
       AlertEndGame();
-      // Handle game completion logic here
-      // Alert.alert("Game Over!", "Your Trivia Score Has Been Updated", [
-      //   {
-      //     text: "Ok",
-      //     onPress: AlertEndGame,
-      //     style: "default",
-      //   },
-      // ]);
     }
   };
   const AlertEndGame = () => {
