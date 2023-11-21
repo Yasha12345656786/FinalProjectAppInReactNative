@@ -57,12 +57,13 @@ export default function TriviaGame() {
    
     setSelectdOptionIndex(selecteAnwer);
   };
+  //אם נבחרה תשובה הפעל את 
   useEffect(() => {
     if (selectedOptionIndex !== null) {
       handleNextClick();
     }
   }, [selectedOptionIndex]);
-
+ //בדיקת התשובה האם נכטנה או לא ומעבר לשאלה הבאה 
   const handleNextClick = () => {
     if (!currentQuestion) {
       return;
